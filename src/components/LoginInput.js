@@ -4,7 +4,7 @@ import Button from "./Button";
 const LoginInput = (props) => {
 	return (
 		<div className="LoginInput">
-			<form>
+			<form onSubmit={props.onLogin}>
 				<input
 					type="email"
 					placeholder="email"
@@ -12,7 +12,7 @@ const LoginInput = (props) => {
 					onChange={props.onEmailChange}
 				/>
 				<input
-					type="pasword"
+					type="password"
 					placeholder="password"
 					value={props.password}
 					onChange={props.onPasswordChange}

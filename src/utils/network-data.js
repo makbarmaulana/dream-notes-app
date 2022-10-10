@@ -47,7 +47,6 @@ async function register({ name, email, password }) {
 	});
 
 	const responseJson = await response.json();
-	console.log("json: ", responseJson);
 
 	if (responseJson.status !== "success") {
 		alert(responseJson.message);

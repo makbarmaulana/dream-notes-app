@@ -1,17 +1,37 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ROUTE_PROPS } from "./utils/route-properties";
+import { getUserLogged, putAccessToken } from "./utils/network-data";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 const App = () => {
 	const [authedUser, setAuthedUser] = React.useState(null);
+	const [initializing, setInitializing] = React.useState(true);
+
+	React.useEffect(() => {
+		async function fethUserLogin() {
+			const { data } = await getUserLogged();
+			setAuthedUser({ data });
+      setInitializing(false)
+		}
+
+		fethUserLogin();
+	}, []);
+
+	const onAuthedHandler = async ({ accessToken }) => {
+		putAccessToken(accessToken);
+	};
+
+	if (initializing) {
+		return null;
+	}
 
 	return (
 		<div className="App">
 			{authedUser === null ? (
 				<Routes>
-					<Route path="/*" element={<LoginPage />} />
+					<Route path="/*" element={<LoginPage authed={onAuthedHandler} />} />
 					<Route path="/register" element={<RegisterPage />} />
 				</Routes>
 			) : (
@@ -23,6 +43,7 @@ const App = () => {
 			)}
 		</div>
 	);
+
 };
 
 export default App;

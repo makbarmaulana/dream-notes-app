@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import RegisterInput from "../components/RegisterInput";
 import { register } from "../utils/network-data";
@@ -8,11 +8,14 @@ const RegisterPage = () => {
 	const [name, onNameChangeHandler] = useInput("");
 	const [email, onEmailChangeHandler] = useInput("");
 	const [password, onPasswordChangeHandler] = useInput("");
+	const navigate = useNavigate()
 
 	const onRegisterHandler = async (e) => {
 		e.preventDefault();
-		console.log("e:", e);
-		await register({ name, email, password });
+		const { error } = await register({ name, email, password });
+		if (!error) {
+			navigate("/login");
+		}
 	};
 
 	return (
