@@ -31,9 +31,6 @@ const LoginPage = (props) => {
 				password={password}
 				onPasswordChange={onPasswordChangeHandler}
 			/>
-			<p>
-				Belum punya akun? <Link to="/register">Daftar di sini.</Link>
-			</p>
 		</div>
 	);
 };
