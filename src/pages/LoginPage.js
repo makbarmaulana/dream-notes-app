@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import { login } from "../utils/network-data";
+import { getUserLogged, login, putAccessToken } from "../utils/network-data";
 import LoginInput from "../components/LoginInput";
 
 const LoginPage = (props) => {
@@ -9,17 +9,17 @@ const LoginPage = (props) => {
 	const [password, onPasswordChangeHandler] = useInput("");
 	const navigate = useNavigate();
 
-	React.useEffect(() => {
-		
-	}, [])
+	React.useEffect(() => {}, []);
 
 	const onLoginHandler = async (e) => {
 		e.preventDefault();
 		const { error, data } = await login({ email, password });
-
 		if (!error) {
+			putAccessToken(data.accessToken);
 			props.authed(data);
-			navigate("/");
+			alert("Login Berhasil");
+		} else {
+			alert("Login gagal");
 		}
 	};
 
