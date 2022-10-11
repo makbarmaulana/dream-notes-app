@@ -1,25 +1,24 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import { getUserLogged, login, putAccessToken } from "../utils/network-data";
+import { login, putAccessToken } from "../utils/network-data";
 import LoginInput from "../components/LoginInput";
 
 const LoginPage = (props) => {
-	const [email, onEmailChangeHandler] = useInput("");
+	const [email, onEmailChangeHandler] = useInput();
 	const [password, onPasswordChangeHandler] = useInput("");
-	const navigate = useNavigate();
-
-	React.useEffect(() => {}, []);
 
 	const onLoginHandler = async (e) => {
 		e.preventDefault();
-		const { error, data } = await login({ email, password });
+		const { error, data } = await login({
+			email: "user3@mail.com",
+			password: "12wq12wq",
+		});
 		if (!error) {
 			putAccessToken(data.accessToken);
 			props.authed(data);
 			alert("Login Berhasil");
-		} else {
-			alert("Login gagal");
+			window.location.reload();
 		}
 	};
 

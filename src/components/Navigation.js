@@ -1,11 +1,11 @@
 import React from "react";
 import { FiLogOut } from "react-icons/fi";
 
-const Navigation = ({ onLogout }) => {
+const Navigation = (props) => {
 	return (
 		<div className="Navigation">
 			<li>
-				<button onClick={onLogout}>
+				<button type="button" onClick={props.onLogout}>
 					<FiLogOut />
 				</button>
 			</li>
