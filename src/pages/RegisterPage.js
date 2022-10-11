@@ -1,37 +1,43 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import RegisterInput from "../components/RegisterInput";
 import { register } from "../utils/network-data";
+import RegisterInput from "../components/RegisterInput";
 
 const RegisterPage = () => {
-	const [name, onNameChangeHandler] = useInput("");
-	const [email, onEmailChangeHandler] = useInput("");
-	const [password, onPasswordChangeHandler] = useInput("");
-	const navigate = useNavigate()
+	const [name, nameHandler] = useInput("");
+	const [email, emailHandler] = useInput("");
+	const [password, passwordHandler] = useInput("");
+	const [confirmPassword, confirmPasswordHandler] = useInput("");
+	const navigate = useNavigate();
 
-	const onRegisterHandler = async (e) => {
+	const registerHandler = async (e) => {
 		e.preventDefault();
-		const { error } = await register({ name, email, password });
-		if (!error) {
-			navigate("/login");
+		console.log("clicked", e);
+
+		if (password !== confirmPassword) {
+			alert("password must be the same");
+		} else {
+			const { error } = await register({ name, email, password });
+			if (!error) {
+				navigate("/");
+			}
 		}
 	};
 
 	return (
 		<div className="RegisterPage">
 			<RegisterInput
-				onRegister={onRegisterHandler}
+				onRegister={registerHandler}
 				name={name}
-				onNameChange={onNameChangeHandler}
+				onNameChange={nameHandler}
 				email={email}
-				onEmailChange={onEmailChangeHandler}
+				onEmailChange={emailHandler}
 				password={password}
-				onPasswordChange={onPasswordChangeHandler}
+				onPasswordChange={passwordHandler}
+				confirmPassword={confirmPassword}
+				onConfirmPasswordChange={confirmPasswordHandler}
 			/>
-			<p>
-				Sudah punya akun? <Link to="/login">Login di sini.</Link>
-			</p>
 		</div>
 	);
 };

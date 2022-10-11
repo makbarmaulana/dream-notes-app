@@ -10,13 +10,13 @@ const App = () => {
 	const [initializing, setInitializing] = React.useState(true);
 
 	React.useEffect(() => {
-		const fetchActiveUser = async () => {
+		const fetchAuthedUser = async () => {
 			const { data } = await getUserLogged();
 			setAuthedUser(data);
 			setInitializing(false);
 		};
 
-		fetchActiveUser();
+		fetchAuthedUser();
 	}, []);
 
 	if (initializing) {

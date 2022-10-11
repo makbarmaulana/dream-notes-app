@@ -1,15 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import { login, putAccessToken } from "../utils/network-data";
 import LoginInput from "../components/LoginInput";
 
 const LoginPage = (props) => {
-	const [email, onEmailChangeHandler] = useInput();
-	const [password, onPasswordChangeHandler] = useInput("");
+	const [email, emailHandler] = useInput();
+	const [password, passwordHandler] = useInput("");
 
-	const onLoginHandler = async (e) => {
+	const loginHandler = async (e) => {
 		e.preventDefault();
+
 		const { error, data } = await login({
 			email: "user3@mail.com",
 			password: "12wq12wq",
@@ -25,11 +25,11 @@ const LoginPage = (props) => {
 	return (
 		<div className="LoginPage">
 			<LoginInput
-				onLogin={onLoginHandler}
+				onLogin={loginHandler}
 				email={email}
-				onEmailChange={onEmailChangeHandler}
+				onEmailChange={emailHandler}
 				password={password}
-				onPasswordChange={onPasswordChangeHandler}
+				onPasswordChange={passwordHandler}
 			/>
 		</div>
 	);

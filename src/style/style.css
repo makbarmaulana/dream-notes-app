@@ -19,6 +19,7 @@ html {
 }
 
 a {
+  width: max-content;
   text-decoration: none;
   color: var(--white);
   font-size: 18px;
@@ -36,10 +37,10 @@ p {
   font-weight: 400;
 }
 
-.LoginPage {
+.LoginPage,
+.RegisterPage {
   margin: 0 auto;
-  width: 100%;
-  max-width: 1140px;
+  max-width: 1440px;
   min-height: 100vh;
   display: grid;
   place-items: center;
@@ -47,7 +48,16 @@ p {
 
 .LoginInput {
   display: grid;
-  grid-template-columns: .8fr 1fr;
+  grid-template-columns: .7fr 1fr;
+}
+
+.RegisterInput {
+  display: grid;
+  grid-template-columns: 1fr .7fr;
+}
+
+.LoginInput,
+.RegisterInput {
   width: 100%;
   max-width: 1000px;
   height: 500px;
@@ -56,8 +66,7 @@ p {
   overflow: hidden;
 }
 
-
-.LoginInput .col-left {
+.col-left {
   padding: 50px;
   text-align: center;
   background-color: var(--bg-purple);
@@ -65,6 +74,33 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.col-right {
+  padding: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login.col-left {
+  grid-column: 1 / 2;
+}
+
+.login.col-right {
+  grid-column: 2 / 3;
+}
+
+.register.col-right {
+  grid-row-start: 1;
+  grid-column: 1 / 2;
+}
+
+.register.col-left {
+  grid-column: 2 / 3;
 }
 
 .welcome-title {
@@ -74,19 +110,18 @@ p {
 }
 
 .welcome-subtitle {
-  margin-bottom: 80px;
+  margin-bottom: 30%;
 }
 
-.LoginInput .col-left .register {
+.ask {
   margin-bottom: 18px;
   font-weight: 500;
 }
 
-.LoginInput .col-left .register-btn {
+.welcome-btn {
   width: 125px;
   border: 1px solid var(--white);
   border-radius: 30px;
-  margin: 0 auto;
   padding: 10px 15px;
   cursor: pointer;
   color: var(--white);
@@ -94,35 +129,26 @@ p {
   transition: .1s ease-in;
 }
 
-.LoginInput .col-left .register-btn:hover {
+.welcome-btn:hover {
   background-color: var(--white);
   color: var(--bg-purple);
 }
 
-.LoginInput .col-right {
-  padding: 50px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-title {
+.auth-title {
   color: var(--bg-purple);
   margin-bottom: 25px;
   font-size: 38px;
   font-weight: 600;
 }
 
-.LoginInput .col-right form {
+.auth-form {
   width: 350px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.LoginInput .col-right .input-box {
+.auth-form .input-box {
   position: relative;
   border-radius: 3px;
   display: flex;
@@ -130,12 +156,14 @@ p {
   background-color: #F4F8F7;
 }
 
-.email-icon, .password-icon {
+.username-icon,
+.email-icon,
+.password-icon {
   margin: 0 10px;
   font-size: 28px;
 }
 
-.LoginInput .col-right input {
+.auth-form input {
   border: unset;
   width: 100%;
   height: 45px;
@@ -144,13 +172,14 @@ p {
   background-color: #F4F8F7;
 }
 
-.LoginInput .col-right input:focus-visible {
+.auth-form input:focus-visible {
   background-color: #FFF;
   border: 1px solid #ebebeb;
   outline-width: 0;
 }
 
-.LoginInput .col-right .btn-login {
+.btn-login,
+.btn-register {
   width: 125px;
   border: 1px solid var(--bg-purple);
   border-radius: 30px;
@@ -163,7 +192,8 @@ p {
   transition: .1s ease-in;
 }
 
-.LoginInput .col-right .btn-login:hover {
+.btn-login:hover,
+.btn-register:hover {
   background-color: var(--bg-purple);
   color: var(--white)
 }

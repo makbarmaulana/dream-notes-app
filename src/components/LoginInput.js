@@ -6,20 +6,20 @@ import Button from "./Button";
 const LoginInput = (props) => {
 	return (
 		<div className="LoginInput">
-			<div className="col-left">
-				<h2 className="welcome-title">Welcome Back</h2>
+			<div className="login col-left">
+				<h2 className="welcome-title">Welcome Back!</h2>
 				<p className="welcome-subtitle">
 					to keep connected with us please login with your personal info.
 				</p>
-				<p className="register">Don't have an account?</p>
+				<p className="ask">Don't have an account?</p>
 				<Link to="/register">
-					<button className="register-btn">Signup</button>
+					<button className="welcome-btn">Signup</button>
 				</Link>
 			</div>
 
-			<div className="col-right">
-				<h2 className="login-title">Login</h2>
-				<form onSubmit={props.onLogin}>
+			<div className="login col-right">
+				<h2 className="auth-title">Login</h2>
+				<form className="auth-form">
 					<div className="input-box">
 						<IoMailOutline className="email-icon" />
 						<input
@@ -38,7 +38,7 @@ const LoginInput = (props) => {
 							onChange={props.onPasswordChange}
 						/>
 					</div>
-					<Button className="btn-login" label="Login" />
+					<Button onClick={props.onLogin} className="btn-login" label="Login" />
 				</form>
 			</div>
 		</div>
