@@ -173,7 +173,6 @@ p {
 .auth-form input,
 .addnote-form :where(input, textarea) {
   all: unset;
-  /* border: unset; */
   width: 100%;
   height: 45px;
   padding: 0 8px;
@@ -212,4 +211,29 @@ p {
 .btn-addnote:hover {
   background-color: var(--bg-purple);
   color: var(--white)
+}
+
+
+/* Header */
+
+.Header {
+  height: 70px;
+  margin-bottom: 50px;
+  padding: 0 42px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr .2fr;
+  box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.Searchbar input {
+  width: 500px;
+  height: 40px;
+  padding: 0 12px;
+}
+
+.Header .toggle {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 import NoteList from "../components/NoteList";
 import {
@@ -11,6 +12,7 @@ import {
 
 const HomePage = () => {
 	const [notes, setNotes] = React.useState([]);
+	const [keyword, setKeyword] = React.useState("");
 	const navigate = useNavigate();
 
 	const fetchActiveNotes = async () => {
@@ -20,7 +22,6 @@ const HomePage = () => {
 
 	React.useEffect(() => {
 		fetchActiveNotes();
-
 	}, []);
 
 	const deleteHandler = async (id) => {
@@ -35,6 +36,14 @@ const HomePage = () => {
 		navigate("/archived");
 	};
 
+	const keywordHandler = (keyword) => {
+		setKeyword(keyword);
+	};
+
+	const filteredNotes = notes.filter((note) =>
+		note.title.toLowerCase().includes(keyword.toLowerCase())
+	);
+
 	const onLogoutHandler = () => {
 		putAccessToken("");
 		window.location.reload();
@@ -42,10 +51,11 @@ const HomePage = () => {
 
 	return (
 		<div className="HomePage">
+			<Header keyword={keyword} keywordChange={keywordHandler} />
 			<Navigation onLogout={onLogoutHandler} />
 			<h1>HomePage</h1>
 			<NoteList
-				notes={notes}
+				notes={filteredNotes}
 				onDelete={deleteHandler}
 				onArchive={archiveHandler}
 			/>
