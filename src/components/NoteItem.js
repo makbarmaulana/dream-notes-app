@@ -11,7 +11,7 @@ const NoteItem = (props) => {
                 <p className="body">{props.body}</p>
             </div>
             <div className="buttons">
-                <Button className="btn-archive" onClick={() => props.onArchive(props.id)} label="ARCHIVE"/>
+                <Button className="btn-archive" onClick={() => props.onArchive(props.id)} label={props.archived ? "UNARCHIVE" : "ARCHIVE"}/>
                 <Button className="btn-delete" onClick={() => props.onDelete(props.id)} label="DELETE"/>
             </div>
         </li>

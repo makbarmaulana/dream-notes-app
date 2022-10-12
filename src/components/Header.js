@@ -1,5 +1,5 @@
 import React from "react";
-import { FiFilePlus, FiLogOut } from "react-icons/fi";
+import { FiFile, FiFilePlus, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
@@ -15,6 +15,12 @@ const Header = (props) => {
 				/>
 			</div>
 			<div className="toggle">
+				<Link to="/">
+					<Button className="btn-archivepage" label="Home" />
+				</Link>
+				<Link to="/archive">
+					<Button className="btn-archivepage" label="Archive" />
+				</Link>
 				<Link to="/add">
 					<Button className="btn-addpage" label={<FiFilePlus />} />
 				</Link>

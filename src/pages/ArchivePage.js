@@ -2,32 +2,32 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NoteList from "../components/NoteList";
-import { archiveNote, deleteNote, getActiveNotes, putAccessToken } from "../utils/network-data";
+import { getArchivedNotes, putAccessToken, deleteNote, unarchiveNote } from "../utils/network-data";
 
-const HomePage = () => {
+const ArchivePage = () => {
 	const [notes, setNotes] = React.useState([]);
 	const [keyword, setKeyword] = React.useState("");
 	const navigate = useNavigate();
 
-	const fetchActiveNotes = async () => {
-		const { data } = await getActiveNotes();
+	const fetchArchiveNotes = async () => {
+		const { data } = await getArchivedNotes();
 		setNotes(data);
 	};
 
 	React.useEffect(() => {
-		fetchActiveNotes();
+		fetchArchiveNotes();
 	}, []);
 
 	const deleteHandler = async (id) => {
 		await deleteNote(id);
 
-		fetchActiveNotes();
+		fetchArchiveNotes();
 	};
 
 	const archiveHandler = async (id) => {
-		await archiveNote(id);
+		await unarchiveNote(id)
 
-		navigate("/archive");
+		navigate("/");
 	};
 
 	const keywordHandler = (keyword) => {
@@ -50,7 +50,7 @@ const HomePage = () => {
 				keywordChange={keywordHandler}
 				onLogout={onLogoutHandler}
 			/>
-			<h1 className="title-page">Active Notes</h1>
+			<h1 className="title-page">Archive Notes</h1>
 			<NoteList
 				notes={filteredNotes}
 				onDelete={deleteHandler}
@@ -60,4 +60,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default ArchivePage;
