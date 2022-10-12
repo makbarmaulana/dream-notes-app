@@ -51,9 +51,13 @@ const HomePage = () => {
 
 	return (
 		<div className="HomePage">
-			<Header keyword={keyword} keywordChange={keywordHandler} />
-			<Navigation onLogout={onLogoutHandler} />
-			<h1>HomePage</h1>
+			{/* <Navigation onLogout={onLogoutHandler} /> */}
+			<Header
+				keyword={keyword}
+				keywordChange={keywordHandler}
+				onLogout={onLogoutHandler}
+			/>
+			<h1 className="title-page">Active Notes</h1>
 			<NoteList
 				notes={filteredNotes}
 				onDelete={deleteHandler}

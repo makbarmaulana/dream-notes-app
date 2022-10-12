@@ -18,6 +18,7 @@ const AddNote = (props) => {
 					placeholder="description..."
 					value={props.body}
 					onChange={props.onBodyChange}
+					data-role="none"
 					required
 				/>
 				<Button

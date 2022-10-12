@@ -183,6 +183,8 @@ p {
 
 .addnote-form textarea {
   min-height: 200px;
+  resize: none;
+  overflow-wrap: break-word !important;
 }
 
 .auth-form input:focus-visible,
@@ -237,4 +239,62 @@ p {
   display: flex;
   gap: 20px;
   justify-content: flex-end;
+}
+
+/* HOMEPAGE */
+
+.title-page {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* Notes */
+
+.NoteList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+  padding: 24px;
+}
+
+.NoteItem {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  padding: 24px;
+  border: 1px solid black;
+  overflow-wrap: break-word !important;
+}
+
+.note-content {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.note-content .createdAt {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.note-content .body {
+  max-height: 170px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.note-content .title {
+  text-align: center;
+  margin-bottom: 14px;
+  font-size: 24px;
+}
+
+.NoteItem .buttons {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  gap: 14px;
 }
