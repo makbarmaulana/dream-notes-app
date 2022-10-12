@@ -11,7 +11,7 @@ const LoginPage = (props) => {
 		e.preventDefault();
 
 		const { error, data } = await login({
-			email: "user3@mail.com",
+			email: "usertext@mail.com",
 			password: "12wq12wq",
 		});
 		if (!error) {
