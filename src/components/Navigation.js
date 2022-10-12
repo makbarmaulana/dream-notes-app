@@ -1,5 +1,6 @@
 import React from "react";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiFilePlus } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Navigation = (props) => {
 	return (
@@ -8,6 +9,9 @@ const Navigation = (props) => {
 				<button type="button" onClick={props.onLogout}>
 					<FiLogOut />
 				</button>
+				<br />
+				<Link to="/add"><button><FiFilePlus /></button></Link>
+				
 			</li>
 		</div>
 	);

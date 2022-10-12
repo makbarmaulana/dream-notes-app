@@ -1,26 +1,38 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import NoteList from "../components/NoteList";
-import { archiveNote, deleteNote, getActiveNotes, putAccessToken } from "../utils/network-data";
+import {
+	archiveNote,
+	deleteNote,
+	getActiveNotes,
+	putAccessToken,
+} from "../utils/network-data";
 
 const HomePage = () => {
 	const [notes, setNotes] = React.useState([]);
+	const navigate = useNavigate();
+
+	const fetchActiveNotes = async () => {
+		const { data } = await getActiveNotes();
+		setNotes(data);
+	};
 
 	React.useEffect(() => {
-		const fetchActiveNotes = async () => {
-			const { data } = await getActiveNotes()
-			setNotes(data)
-		}
+		fetchActiveNotes();
 
-		fetchActiveNotes()
-	}, [])
+	}, []);
 
-	const deleteHandler = (id) => {
-		deleteNote(id)
+	const deleteHandler = async (id) => {
+		await deleteNote(id);
+
+		fetchActiveNotes();
 	};
 
 	const archiveHandler = (id) => {
-		archiveNote(id)
+		archiveNote(id);
+
+		navigate("/archived");
 	};
 
 	const onLogoutHandler = () => {

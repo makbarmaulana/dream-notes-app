@@ -11,8 +11,8 @@ const LoginPage = (props) => {
 		e.preventDefault();
 
 		const { error, data } = await login({
-			email: "usertext@mail.com",
-			password: "12wq12wq",
+			email: "admin@mail.com",
+			password: "admin1",
 		});
 		if (!error) {
 			putAccessToken(data.accessToken);
