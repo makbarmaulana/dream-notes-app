@@ -1,4 +1,3 @@
 import React from "react";
 
-export const LocaleContext = React.createContext()
-export const ThemeContext = React.createContext()
+export const Context = React.createContext()

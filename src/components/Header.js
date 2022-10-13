@@ -1,13 +1,13 @@
 import React from "react";
-import { FiFile, FiFilePlus, FiLogOut } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import { LocaleContext, ThemeContext } from "../context/Context";
+import { FiLogOut } from "react-icons/fi";
+import { Context } from "../context/Context";
 import Button from "./Button";
 
 const Header = (props) => {
-	const {locale, toggleLocale} = React.useContext(LocaleContext)
-	const {theme, toggleTheme} = React.useContext(ThemeContext)
-	
+	const { localeValue, themeValue } = React.useContext(Context);
+	const { locale, toggleLocale } = localeValue;
+	const { theme, toggleTheme } = themeValue;
+
 	return (
 		<header className="Header">
 			<div className="Searchbar">
@@ -19,24 +19,21 @@ const Header = (props) => {
 				/>
 			</div>
 			<div className="toggle">
-				<Link to="/">
-					<Button className="btn-archivepage" label="Home" />
-				</Link>
-				<Link to="/archive">
-					<Button className="btn-archivepage" label="Archive" />
-				</Link>
-				<Link to="/add">
-					<Button className="btn-addpage" label={<FiFilePlus />} />
-				</Link>
-				<Button className="lang" onClick={toggleLocale} label={locale.toUpperCase()}/>
-				<Button className="lang" onClick={toggleTheme} label={theme.toUpperCase()}/>
-				<Link>
-					<Button
-						className="btn-logout"
-						onClick={props.onLogout}
-						label={<FiLogOut />}
-					/>
-				</Link>
+				<Button
+					className="toggle-item"
+					onClick={toggleLocale}
+					label={locale.toUpperCase()}
+				/>
+				<Button
+					className="toggle-item"
+					onClick={toggleTheme}
+					label={theme.toUpperCase()}
+				/>
+				<Button
+					className="btn-logout"
+					onClick={props.onLogout}
+					label={<FiLogOut />}
+				/>
 			</div>
 		</header>
 	);

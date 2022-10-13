@@ -4,8 +4,8 @@ import { ROUTE_PROPS } from "./utils/route-properties";
 import { getUserLogged } from "./utils/network-data";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { LocaleContext } from "./context/Context";
-import { ThemeContext } from "./context/Context";
+import { Context } from "./context/Context";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
 	const [authedUser, setAuthedUser] = React.useState(null);
@@ -23,6 +23,12 @@ const App = () => {
 		fetchAuthedUser();
 	}, []);
 
+	React.useEffect(() => {
+		theme === "light"
+			? document.documentElement.setAttribute("data-theme", "light")
+			: document.documentElement.setAttribute("data-theme", "dark");
+	});
+
 	const toggleLocale = () => {
 		setLocale((prevLocale) => (prevLocale === "en" ? "id" : "en"));
 	};
@@ -31,20 +37,14 @@ const App = () => {
 		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 	};
 
-	const localeContextValue = React.useMemo(
+	const contextValue = React.useMemo(
 		() => ({
-			locale,
-			toggleLocale,
+			localeValue: { locale, toggleLocale },
+			themeValue: { theme, toggleTheme },
+			userValue: { authedUser },
 		}),
-		[locale]
-	);
 
-	const themeContextValue = React.useMemo(
-		() => ({
-			theme,
-			toggleTheme,
-		}),
-		[theme]
+		[locale, theme, authedUser]
 	);
 
 	if (initializing) {
@@ -52,24 +52,27 @@ const App = () => {
 	}
 
 	return (
-		<ThemeContext.Provider value={themeContextValue}>
-			<LocaleContext.Provider value={localeContextValue}>
-				<div className="App">
-					{authedUser === null ? (
+		<Context.Provider value={contextValue}>
+			<div className="App">
+				{authedUser === null ? (
+					<div className="nonauth">
 						<Routes>
 							<Route path="/*" element={<LoginPage authed={setAuthedUser} />} />
 							<Route path="/register" element={<RegisterPage />} />
 						</Routes>
-					) : (
+					</div>
+				) : (
+					<div className="authed">
+						<Sidebar />
 						<Routes>
 							{ROUTE_PROPS.map(({ path, element }) => (
 								<Route key={path} path={path} element={element} />
 							))}
 						</Routes>
-					)}
-				</div>
-			</LocaleContext.Provider>
-		</ThemeContext.Provider>
+					</div>
+				)}
+			</div>
+		</Context.Provider>
 	);
 };
 

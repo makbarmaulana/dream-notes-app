@@ -13,7 +13,6 @@ const RegisterPage = () => {
 
 	const registerHandler = async (e) => {
 		e.preventDefault();
-		console.log("clicked", e);
 
 		if (password !== confirmPassword) {
 			alert("password must be the same");

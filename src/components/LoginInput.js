@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
+import { Context } from "../context/Context";
 import Button from "./Button";
 
 const LoginInput = (props) => {
+	const { localeValue, themeValue } = React.useContext(Context);
+	const { locale, toggleLocale } = localeValue;
+	const { theme, toggleTheme } = themeValue;
+
 	return (
 		<div className="LoginInput">
 			<div className="login col-left">
@@ -18,6 +23,11 @@ const LoginInput = (props) => {
 			</div>
 
 			<div className="login col-right">
+				<Button
+					className="toggle-theme"
+					onClick={toggleTheme}
+					label={theme.toUpperCase()}
+				/>
 				<h2 className="auth-title">Login</h2>
 				<form className="auth-form">
 					<div className="input-box">
