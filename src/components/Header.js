@@ -1,9 +1,13 @@
 import React from "react";
 import { FiFile, FiFilePlus, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { LocaleContext, ThemeContext } from "../context/Context";
 import Button from "./Button";
 
 const Header = (props) => {
+	const {locale, toggleLocale} = React.useContext(LocaleContext)
+	const {theme, toggleTheme} = React.useContext(ThemeContext)
+	
 	return (
 		<header className="Header">
 			<div className="Searchbar">
@@ -24,7 +28,8 @@ const Header = (props) => {
 				<Link to="/add">
 					<Button className="btn-addpage" label={<FiFilePlus />} />
 				</Link>
-				<p className="lang">EN</p>
+				<Button className="lang" onClick={toggleLocale} label={locale.toUpperCase()}/>
+				<Button className="lang" onClick={toggleTheme} label={theme.toUpperCase()}/>
 				<Link>
 					<Button
 						className="btn-logout"
