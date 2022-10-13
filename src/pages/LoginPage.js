@@ -17,7 +17,6 @@ const LoginPage = (props) => {
 		if (!error) {
 			putAccessToken(data.accessToken);
 			props.authed(data);
-			alert("Login Berhasil");
 			window.location.reload();
 		}
 	};

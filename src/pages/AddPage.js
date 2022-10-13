@@ -13,7 +13,7 @@ const AddPage = () => {
 	const addNoteHandler = async (e) => {
 		e.preventDefault();
 
-		const { error } = await addNote({ title: 'title notes', body });
+		const { error } = await addNote({ title, body });
 
 		if (!error) {
 			navigate("/");
