@@ -23,11 +23,13 @@ const App = () => {
 		fetchAuthedUser();
 	}, []);
 
+
+	}
 	React.useEffect(() => {
 		theme === "light"
-			? document.documentElement.setAttribute("data-theme", "light")
-			: document.documentElement.setAttribute("data-theme", "dark");
-	});
+			? document.documentElement.setAttribute("data-theme", "dark")
+			: document.documentElement.setAttribute("data-theme", "light");
+	}, []);
 
 	const toggleLocale = () => {
 		setLocale((prevLocale) => (prevLocale === "en" ? "id" : "en"));
@@ -53,7 +55,7 @@ const App = () => {
 
 	return (
 		<Context.Provider value={contextValue}>
-			<div className="App">
+			<div data-theme className="App">
 				{authedUser === null ? (
 					<div className="nonauth">
 						<Routes>
@@ -62,7 +64,8 @@ const App = () => {
 						</Routes>
 					</div>
 				) : (
-					<div className="authed">
+					<div data-theme className="authed">
+						<div data-theme className="empty-box"></div>
 						<Sidebar />
 						<Routes>
 							{ROUTE_PROPS.map(({ path, element }) => (

@@ -4,7 +4,7 @@ import ArchivePage from "../pages/ArchivePage";
 
 export const ROUTE_PROPS = [
 	{
-		path: "/",
+		path: "/home",
 		element: <HomePage />,
 	},
 	{

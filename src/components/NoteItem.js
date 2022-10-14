@@ -6,9 +6,13 @@ const NoteItem = (props) => {
     return (
         <li className="NoteItem">
             <div className="note-content">
-                <p className="createdAt">{showFormattedDate(props.createdAt)}</p>
-                <h3 className="title">{props.title}</h3>
-                <p className="body">{props.body}</p>
+                <div className="date-box">
+                    <p className="createdAt">{showFormattedDate(props.createdAt)}</p>
+                </div>
+                <div className="content-box">
+                    <h3 className="title">{props.title}</h3>
+                    <p className="body">{props.body}</p>
+                </div>
             </div>
             <div className="buttons">
                 <Button className="btn-archive" onClick={() => props.onArchive(props.id)} label={props.archived ? "UNARCHIVE" : "ARCHIVE"}/>

@@ -1,12 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Context } from "../context/Context";
 import avatar from "../assets/avatar.png";
+import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill } from "react-icons/bs";
 
 const Sidebar = () => {
 	const { localeValue, userValue } = React.useContext(Context);
 	const { locale } = localeValue;
 	const { authedUser } = userValue;
+
+	const navigation = [
+		{
+			path: "/home",
+			icon: <BsHouseDoorFill />,
+			title: {
+				en: "Home",
+				id: "Beranda",
+			},
+		},
+		{
+			path: "/archive",
+			icon: <BsFillArchiveFill />,
+			title: {
+				en: "Archive",
+				id: "Arsip",
+			},
+		},
+		{
+			path: "/add",
+			icon: <BsFillPlusSquareFill />,
+			title: {
+				en: "Add",
+				id: "Tambah",
+			},
+		},
+	];
 
 	return (
 		<div className="Sidebar">
@@ -19,14 +47,20 @@ const Sidebar = () => {
 					<p className="username">{authedUser.name}</p>
 				</div>
 			</div>
-			<ul className="nav-menu">
-				<li className="nav-item">
-					<Link to="/">{locale === "en" ? "Home" : "Beranda"}</Link>
-				</li>
-				<li className="nav-item">
-					<Link to="/archive">{locale === "en" ? "Archive" : "Arsip"}</Link>
-				</li>
-			</ul>
+			<div className="nav-menu">
+				{navigation.map((item, index) => (
+					<NavLink
+						key={index}
+						to={item.path}
+						className={({ isActive }) =>
+							isActive ? "nav-item active" : "nav-item"
+						}
+					>
+						<i className="nav-icon">{item.icon}</i>
+						<p className="nav-link_title">{locale === "en" ? item.title.en : item.title.id}</p>
+					</NavLink>
+				))}
+			</div>
 		</div>
 	);
 };
