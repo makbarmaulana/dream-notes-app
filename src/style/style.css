@@ -2,7 +2,7 @@
 
 :root {
   --ff-poppins: 'Poppins', sans-serif;
-  --sidebar-width: 250px;
+  --sidebar-width: 20%;
   --black: #000;
   --white: #FFF;
   --light-grey: rgba(211, 211, 211, .8);
@@ -12,12 +12,18 @@
   --dark-blue-1: #152042;
   --dark-blue-2: #1B2B54;
   --dark-blue-3: #223767;
-  --bg-theme: var(--white);
+  --w-db1: var(--white);
+  --w-db2: var(--white);
+  --w-db3: var(--white);
+  --db2-db3: var(--dark-blue-3);
   --fc-theme: var(--black);
 }
 
 [data-theme='dark'] {
-  --bg-theme: var(--dark-blue-1);
+  --w-db1: var(--dark-blue-1);
+  --w-db2: var(--dark-blue-2);
+  --w-db3: var(--dark-blue-3);
+  --db2-db3: var(--dark-blue-2);
   --fc-theme: var(--white);
 }
 
@@ -34,7 +40,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-theme);
+  background-color: var(--w-db1);
 }
 
 a {
@@ -62,38 +68,39 @@ p {
   font-weight: 400;
 }
 
-
-.App .authed {
+.HomePage {
   display: grid;
-  grid-template-columns: .2fr 1fr;
+  grid-template-columns: 20% 1fr;
 }
 
-.App .authed .empty-box {
-  min-width: var(--sidebar-width);
+.Header {
+  grid-column: 2/3;
+}
+
+.Notes {
+  grid-column: 2/3;
 }
 
 /* SIDEBAR */
 
 .Sidebar {
+  width: 20%;
+  grid-area: sidebar;
   position: fixed;
-  min-width: var(--sidebar-width);
-  height: 100vh;
+  height: 100%;
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .profile {
   display: flex;
+  width: 100%;
   gap: 14px;
   height: 70px;
   align-items: center;
   justify-content: center;
   box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--dark-blue-3);
-  background-color: var(--purple);
-}
-
-.profile.dark {
-  background-color: var(--dark-blue-1);
+  background-color: var(--db2-db3);
 }
 
 .avatar-box {
@@ -125,15 +132,10 @@ p {
 }
 
 .nav-menu {
-  background-color: var(--purple);
+  background-color: var(--dark-blue-1);
   display: flex;
   flex-direction: column;
   height: calc(100% - 70px);
-  width: 100%;
-}
-
-.nav-menu.dark {
-  background-color: var(--dark-blue-1);
 }
 
 .nav-item {
@@ -203,7 +205,7 @@ p {
 }
 
 .col-left {
-  background-color: var(--purple);
+  background-color: var(--dark-blue-3);
   color: var(--white);
   padding: 50px;
   text-align: center;
@@ -214,16 +216,12 @@ p {
 }
 
 .col-right {
-  background-color: var(--white);
+  background-color: var(--w-db2);
   padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.col-right.dark {
-  background-color: var(--dark-blue-2);
 }
 
 .login.col-left {
@@ -362,24 +360,26 @@ p {
   align-items: center;
   grid-template-columns: 1fr .2fr;
   width: 100%;
+  display: flex;
   height: 70px;
-  margin-bottom: 50px;
   padding: 0 42px;
   box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
-  background-color: var(--purple);
+  background-color: var(--w-db3);
 }
 
-.Header.dark {
-  background-color: var(--dark-blue-3);
+.Searchbar {
+  width: 50%;
 }
 
 .Searchbar input {
-  width: 500px;
+  width: 100%;
+  min-width: 300px;
   height: 40px;
   padding: 0 12px;
 }
 
 .Header .toggle {
+  margin-left: auto;
   display: flex;
   justify-content: flex-end;
   gap: 20px;
@@ -391,7 +391,9 @@ p {
 
 /* HOMEPAGE */
 
+
 .title-page {
+  margin: 18px auto;
   text-align: center;
   font-size: 32px;
   font-weight: 400;
@@ -401,26 +403,17 @@ p {
 /* Notes */
 
 .NoteList {
-  display: grid;
-  grid-template-columns: minmax(550px, 1fr);
-  margin: 0 72px;
-  gap: 32px;
   padding: 24px;
+  background-color: var(--w-db2);
 }
 
 .NoteItem {
   position: relative;
-  width: 100%;
   height: 250px;
-  margin: auto;
   padding: 24px;
   overflow-wrap: break-word !important;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
-  background-color: var(--white);
-}
-
-.NoteItem.dark {
-  background-color: var(--dark-blue-3);
+  background-color: var(--w-db3);
 }
 
 .note-content {
@@ -432,21 +425,12 @@ p {
   border: 2px solid var(--light-grey);
 }
 
-.note-content.dark {
-  border: 2px solid var(--dark-blue-2);
-}
-
 .date-box {
   display: grid;
   place-content: center;
   min-width: 150px;
   height: 100%;
   border-right: 2px solid var(--light-grey);
-  color: var(--fc-theme);
-}
-
-.date-box.dark {
-  border-right: 2px solid var(--dark-blue-2);
   color: var(--fc-theme);
 }
 
@@ -458,13 +442,9 @@ p {
 }
 
 .content-box {
-  min-width: 400px;
+  min-width: 250px;
   height: 100%;
   padding: 14px;
-  color: var(--fc-theme);
-}
-
-.content-box.dark {
   color: var(--fc-theme);
 }
 

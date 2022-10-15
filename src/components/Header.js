@@ -9,7 +9,7 @@ const Header = (props) => {
 	const { theme, toggleTheme } = themeValue;
 
 	return (
-		<header className={`Header ${theme}`}>
+		<header className={`Header`}>
 			<div className="Searchbar">
 				<input
 					type="text"
