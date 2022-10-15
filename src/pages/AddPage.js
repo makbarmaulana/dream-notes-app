@@ -16,7 +16,7 @@ const AddPage = () => {
 		const { error } = await addNote({ title, body });
 
 		if (!error) {
-			navigate("/");
+			navigate("/home");
 		}
 	};
 

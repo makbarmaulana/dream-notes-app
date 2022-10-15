@@ -6,12 +6,12 @@ import Button from "./Button";
 
 const LoginInput = (props) => {
 	const { localeValue, themeValue } = React.useContext(Context);
-	const { locale, toggleLocale } = localeValue;
+	const { locale } = localeValue;
 	const { theme, toggleTheme } = themeValue;
 
 	return (
 		<div className="LoginInput">
-			<div className="login col-left">
+			<div className={`login col-left ${theme}`}>
 				<h2 className="welcome-title">Welcome Back!</h2>
 				<p className="welcome-subtitle">
 					to keep connected with us please login with your personal info.
@@ -22,7 +22,7 @@ const LoginInput = (props) => {
 				</Link>
 			</div>
 
-			<div className="login col-right">
+			<div className={`login col-right ${theme}`}>
 				<Button
 					className="toggle-theme"
 					onClick={toggleTheme}
@@ -48,7 +48,7 @@ const LoginInput = (props) => {
 							onChange={props.onPasswordChange}
 						/>
 					</div>
-					<Button onClick={props.onLogin} className="btn-login" label="Login" />
+					<Button onClick={props.onLogin} className={`btn-login ${theme}`} label="Login" />
 				</form>
 			</div>
 		</div>

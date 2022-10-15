@@ -5,8 +5,9 @@ import avatar from "../assets/avatar.png";
 import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill } from "react-icons/bs";
 
 const Sidebar = () => {
-	const { localeValue, userValue } = React.useContext(Context);
+	const { localeValue, themeValue, userValue } = React.useContext(Context);
 	const { locale } = localeValue;
+	const { theme } = themeValue
 	const { authedUser } = userValue;
 
 	const navigation = [
@@ -38,7 +39,7 @@ const Sidebar = () => {
 
 	return (
 		<div className="Sidebar">
-			<div className="profile">
+			<div className={`profile ${theme}`}>
 				<figure className="avatar-box">
 					<img src={avatar} alt="avatar-img" />
 				</figure>
@@ -47,17 +48,17 @@ const Sidebar = () => {
 					<p className="username">{authedUser.name}</p>
 				</div>
 			</div>
-			<div className="nav-menu">
+			<div className={`nav-menu ${theme}`}>
 				{navigation.map((item, index) => (
 					<NavLink
 						key={index}
 						to={item.path}
 						className={({ isActive }) =>
-							isActive ? "nav-item active" : "nav-item"
+							isActive ? `nav-item active ${theme}` : `nav-item ${theme}`
 						}
 					>
 						<i className="nav-icon">{item.icon}</i>
-						<p className="nav-link_title">{locale === "en" ? item.title.en : item.title.id}</p>
+						<p className="nav-title">{locale === "en" ? item.title.en : item.title.id}</p>
 					</NavLink>
 				))}
 			</div>

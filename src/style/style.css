@@ -1,41 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* :root {
+:root {
   --ff-poppins: 'Poppins', sans-serif;
   --sidebar-width: 250px;
   --black: #000;
   --white: #FFF;
   --light-grey: rgba(211, 211, 211, .8);
   --purple: #8981D7;
+  --purple: #8981D7;
   --blue: #2970FF;
   --dark-blue-1: #152042;
   --dark-blue-2: #1B2B54;
   --dark-blue-3: #223767;
-  --bg-theme-1: var(--purple);
-  --bg-theme-2: var(--white);
-  --bg-theme-3: var(--white);
-  --fc-theme-1: var(--black);
-} */
-/* 
-[data-theme='dark'] {
-  --bg-theme-1: #152042;
-  --bg-theme-2: #1B2B54;
-  --bg-theme-3: #223767;
-  --fc-theme-1: var(--white);
-} */
-
-:root {
-  --ff-poppins: 'Poppins', sans-serif;
-  --sidebar-width: 250px;
   --bg-theme: var(--white);
+  --fc-theme: var(--black);
 }
 
 [data-theme='dark'] {
-  --bg-theme: #1B2B54;
-}
-
-.Header.dark {
-  background-color: #1B2B54;
+  --bg-theme: var(--dark-blue-1);
+  --fc-theme: var(--white);
 }
 
 *,
@@ -104,9 +87,13 @@ p {
   height: 70px;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-theme-1);
+  box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid var(--dark-blue-3);
-  box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.1)
+  background-color: var(--purple);
+}
+
+.profile.dark {
+  background-color: var(--dark-blue-1);
 }
 
 .avatar-box {
@@ -138,11 +125,15 @@ p {
 }
 
 .nav-menu {
-  background-color: var(--bg-theme-1);
+  background-color: var(--purple);
   display: flex;
   flex-direction: column;
   height: calc(100% - 70px);
   width: 100%;
+}
+
+.nav-menu.dark {
+  background-color: var(--dark-blue-1);
 }
 
 .nav-item {
@@ -154,15 +145,16 @@ p {
   transition: all .2s ease;
 }
 
-.nav-item:hover,
-.nav-item.active {
-  background-color: var(--bg-theme-3);
+.nav-item:where(:hover, .active) {
+  background-color: var(--white);
+  color: var(--purple);
   border-left: 4px solid var(--blue);
   padding-left: 14px;
 }
 
-.nav-link {
-  width: 100%;
+.nav-item.dark:where(:hover, .active) {
+  background-color: var(--dark-blue-3);
+  color: var(--blue);
 }
 
 .nav-icon {
@@ -171,16 +163,12 @@ p {
   justify-content: center;
   font-size: 18px;
   font-weight: 500;
-  color: var(--purple);
 }
 
-
-.nav-link_title {
+.nav-title {
   font-size: 18px;
   font-weight: 400;
-  color: var(--light-grey);
 }
-
 
 
 /* MAIN */
@@ -207,7 +195,6 @@ p {
 
 .LoginInput,
 .RegisterInput {
-  background: ;
   width: 100%;
   max-width: 1000px;
   height: 500px;
@@ -216,7 +203,7 @@ p {
 }
 
 .col-left {
-  background-color: ;
+  background-color: var(--purple);
   color: var(--white);
   padding: 50px;
   text-align: center;
@@ -227,12 +214,16 @@ p {
 }
 
 .col-right {
-  background-color: ;
+  background-color: var(--white);
   padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.col-right.dark {
+  background-color: var(--dark-blue-2);
 }
 
 .login.col-left {
@@ -268,8 +259,8 @@ p {
 }
 
 .welcome-btn {
-  border: 1px solid;
-  color: ;
+  border: 1px solid currentColor;
+  color: var(--white);
   width: 125px;
   border-radius: 30px;
   padding: 10px 15px;
@@ -279,13 +270,13 @@ p {
 }
 
 .welcome-btn:hover {
-  background-color: ;
-  color: ;
+  background-color: var(--white);
+  color: var(--purple);
 }
 
 .auth-title,
 .addnote-title {
-  color: ;
+  color: var(--purple);
   text-align: center;
   margin-bottom: 25px;
   font-size: 38px;
@@ -341,8 +332,8 @@ p {
 .btn-login,
 .btn-register,
 .btn-addnote {
-  border: 1px solid;
-  color: ;
+  border: 1px solid currentColor;
+  color: var(--purple);
   width: max-content;
   border-radius: 30px;
   margin: 15px auto 0;
@@ -353,13 +344,16 @@ p {
   transition: .1s ease-in;
 }
 
-.btn-login:hover,
-.btn-register:hover,
-.btn-addnote:hover {
-  background-color: ;
-  color: ;
+:is(.btn-login, .btn-register, .btn-addnote).dark {
+  color: var(--white);
+  border: 1px solid var(--white);
 }
 
+:is(.btn-login, .btn-register, .btn-addnote):hover {
+  background-color: var(--purple);
+  border: 1px solid var(--purple);
+  color: var(--white);
+}
 
 /* Header */
 
@@ -372,7 +366,11 @@ p {
   margin-bottom: 50px;
   padding: 0 42px;
   box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
-  background-color: var(--bg-theme-3);
+  background-color: var(--purple);
+}
+
+.Header.dark {
+  background-color: var(--dark-blue-3);
 }
 
 .Searchbar input {
@@ -389,7 +387,6 @@ p {
 
 .Header .toggle>* {
   color: var(--fc-theme-1);
-  /* */
 }
 
 /* HOMEPAGE */
@@ -398,7 +395,7 @@ p {
   text-align: center;
   font-size: 32px;
   font-weight: 400;
-  color: #99C1E3;
+  color: var(--fc-theme);
 }
 
 /* Notes */
@@ -409,7 +406,6 @@ p {
   margin: 0 72px;
   gap: 32px;
   padding: 24px;
-  background-color: var(--bg-theme-2);
 }
 
 .NoteItem {
@@ -419,9 +415,12 @@ p {
   margin: auto;
   padding: 24px;
   overflow-wrap: break-word !important;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
-  color: #d3d9e2;
-  background-color: var(--bg-theme-3);
+  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
+  background-color: var(--white);
+}
+
+.NoteItem.dark {
+  background-color: var(--dark-blue-3);
 }
 
 .note-content {
@@ -430,7 +429,11 @@ p {
   width: 100%;
   height: calc(100% - 30px);
   margin-bottom: 24px;
-  border: 2px solid var(--bg-theme-2);
+  border: 2px solid var(--light-grey);
+}
+
+.note-content.dark {
+  border: 2px solid var(--dark-blue-2);
 }
 
 .date-box {
@@ -438,11 +441,18 @@ p {
   place-content: center;
   min-width: 150px;
   height: 100%;
-  border-right: 2px solid var(--bg-theme-2);
+  border-right: 2px solid var(--light-grey);
+  color: var(--fc-theme);
+}
+
+.date-box.dark {
+  border-right: 2px solid var(--dark-blue-2);
+  color: var(--fc-theme);
 }
 
 .date-box .createdAt {
   font-size: 18px;
+  font-weight: 500;
   margin-bottom: 8px;
   padding: 14px;
 }
@@ -451,18 +461,25 @@ p {
   min-width: 400px;
   height: 100%;
   padding: 14px;
+  color: var(--fc-theme);
 }
 
-.note-content .body {
+.content-box.dark {
+  color: var(--fc-theme);
+}
+
+.content-box .title {
+  margin-bottom: 4px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.content-box .body {
+  font-weight: 300;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.note-content .title {
-  margin-bottom: 14px;
-  font-size: 24px;
 }
 
 .NoteItem .buttons {
@@ -474,6 +491,5 @@ p {
 }
 
 .NoteItem .buttons>* {
-  color: var(--fc-theme-1);
-  /* */
+  color: var(--fc-theme);
 }

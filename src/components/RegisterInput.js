@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoPersonOutline, IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
+import { Context } from "../context/Context";
 import Button from "./Button";
 
 const RegisterInput = (props) => {
+	const { localeValue, themeValue } = React.useContext(Context);
+	const { locale } = localeValue;
+	const { theme } = themeValue;
+	
 	return (
 		<div className="RegisterInput">
-			<div className="register col-left">
+			<div className={`register col-left ${theme}`}>
 				<h2 className="welcome-title">Hello, Friend!</h2>
 				<p className="welcome-subtitle">
 					Enter your personal details and start journey with us.
@@ -17,7 +22,7 @@ const RegisterInput = (props) => {
 				</Link>
 			</div>
 
-			<div className="register col-right">
+			<div className={`register col-right ${theme}`}>
 				<h2 className="auth-title">Create an account</h2>
 				<form className="auth-form">
 					<div className="input-box">
@@ -56,7 +61,7 @@ const RegisterInput = (props) => {
 							onChange={props.onConfirmPasswordChange}
 						/>
 					</div>
-					<Button onClick={props.onRegister} className="btn-login" label="Signup" />
+					<Button onClick={props.onRegister} className={`btn-register ${theme}`} label="Signup" />
 				</form>
 			</div>
 		</div>
