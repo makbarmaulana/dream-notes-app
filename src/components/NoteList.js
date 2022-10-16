@@ -1,13 +1,9 @@
 import React from "react";
 import NoteItem from "./NoteItem";
-import { Context } from "../context/Context";
 
 const NoteList = (props) => {
-	const { themeValue } = React.useContext(Context);
-	const { theme } = themeValue;
-
 	return (
-		<ul className={`NoteList ${theme}`}>
+		<ul className="NoteList">
 			{props.notes.map((note) => (
 				<NoteItem
 					{...note}

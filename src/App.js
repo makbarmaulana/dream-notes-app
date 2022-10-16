@@ -12,7 +12,6 @@ const App = () => {
 	const [initializing, setInitializing] = React.useState(true);
 	const [locale, setLocale] = React.useState("en");
 	const [theme, setTheme] = React.useState("light");
-	console.log(theme);
 
 	React.useEffect(() => {
 		const fetchAuthedUser = async () => {
@@ -64,7 +63,6 @@ const App = () => {
 					</div>
 				) : (
 					<div className="authed">
-						<div className="empty-box"></div>
 						<Sidebar />
 						<Routes>
 							{ROUTE_PROPS.map(({ path, element }) => (

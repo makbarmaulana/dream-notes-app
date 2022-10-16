@@ -9,16 +9,17 @@ const Header = (props) => {
 	const { theme, toggleTheme } = themeValue;
 
 	return (
-		<header className={`Header`}>
-			<div className="Searchbar">
+		<header className="Header">
+			<div className="searchbar">
 				<input
+					className="input"
 					type="text"
 					placeholder="Search notes..."
 					value={props.keyword}
 					onChange={(e) => props.keywordChange(e.target.value)}
 				/>
 			</div>
-			<div className="toggle">
+			<div className="toggle-menu">
 				<Button
 					className="toggle-item"
 					onClick={toggleLocale}

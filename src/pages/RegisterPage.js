@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import { register } from "../utils/network-data";
 import RegisterInput from "../components/RegisterInput";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
 	const [name, nameHandler] = useInput("");
@@ -26,17 +27,30 @@ const RegisterPage = () => {
 
 	return (
 		<div className="RegisterPage">
-			<RegisterInput
-				onRegister={registerHandler}
-				name={name}
-				onNameChange={nameHandler}
-				email={email}
-				onEmailChange={emailHandler}
-				password={password}
-				onPasswordChange={passwordHandler}
-				confirmPassword={confirmPassword}
-				onConfirmPasswordChange={confirmPasswordHandler}
-			/>
+			<div className="register col-left">
+				<h2 className="title">Hello, Friend!</h2>
+				<p className="subtitle">
+					Enter your personal details and start journey with us.
+				</p>
+				<p className="ask">Have an account?</p>
+				<Link to="/" className="welcome-btn">
+					Login
+				</Link>
+			</div>
+
+			<div className="register col-right">
+				<RegisterInput
+					onRegister={registerHandler}
+					name={name}
+					onNameChange={nameHandler}
+					email={email}
+					onEmailChange={emailHandler}
+					password={password}
+					onPasswordChange={passwordHandler}
+					confirmPassword={confirmPassword}
+					onConfirmPasswordChange={confirmPasswordHandler}
+				/>
+			</div>
 		</div>
 	);
 };

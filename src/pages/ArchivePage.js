@@ -50,7 +50,7 @@ const ArchivePage = () => {
 				keywordChange={keywordHandler}
 				onLogout={onLogoutHandler}
 			/>
-			<h1 className="title-page">Archive Notes</h1>
+			<h1 className="status-notes">Archive Notes</h1>
 			<NoteList
 				notes={filteredNotes}
 				onDelete={deleteHandler}

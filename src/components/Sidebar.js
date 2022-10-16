@@ -31,15 +31,15 @@ const Sidebar = () => {
 			path: "/add",
 			icon: <BsFillPlusSquareFill />,
 			title: {
-				en: "Add",
-				id: "Tambah",
+				en: "Add Note",
+				id: "Tambah Catatan",
 			},
 		},
 	];
 
 	return (
 		<div className="Sidebar">
-			<div className={`profile ${theme}`}>
+			<div className="profile">
 				<figure className="avatar-box">
 					<img src={avatar} alt="avatar-img" />
 				</figure>
@@ -48,13 +48,13 @@ const Sidebar = () => {
 					<p className="username">{authedUser.name}</p>
 				</div>
 			</div>
-			<div className={`nav-menu ${theme}`}>
+			<div className="nav-menu">
 				{navigation.map((item, index) => (
 					<NavLink
 						key={index}
 						to={item.path}
 						className={({ isActive }) =>
-							isActive ? `nav-item active ${theme}` : `nav-item ${theme}`
+							isActive ? "nav-item active" : "nav-item"
 						}
 					>
 						<i className="nav-icon">{item.icon}</i>

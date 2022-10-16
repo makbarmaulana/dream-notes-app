@@ -3,10 +3,11 @@ import Button from "./Button";
 
 const AddNote = (props) => {
 	return (
-		<div className="AddNote">
-			<h2 className="addnote-title">Add Note</h2>
-			<form className="addnote-form">
+		<div className="AddInputNote">
+			<h2 className="title">Add Note</h2>
+			<form className="form">
 				<input
+					className="input add-title"
 					type="text"
 					placeholder="title..."
 					value={props.title}
@@ -14,6 +15,7 @@ const AddNote = (props) => {
 					required
 				/>
 				<textarea
+					className="input add-body"
 					type="text"
 					placeholder="description..."
 					value={props.body}

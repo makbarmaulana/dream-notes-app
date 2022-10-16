@@ -2,7 +2,7 @@
 
 :root {
   --ff-poppins: 'Poppins', sans-serif;
-  --sidebar-width: 20%;
+  --header-h: 70px;
   --black: #000;
   --white: #FFF;
   --light-grey: rgba(211, 211, 211, .8);
@@ -44,19 +44,18 @@ body {
 }
 
 a {
-  width: max-content;
   text-decoration: none;
-  color: var(--white);
   font-size: 18px;
   font-weight: 500;
 }
 
 button {
   background-color: unset;
-  font-weight: 500;
   font-size: 18px;
+  font-weight: 500;
   cursor: pointer;
   border: none;
+  width: max-content;
 }
 
 li {
@@ -65,60 +64,225 @@ li {
 
 p {
   font-size: 18px;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 22px;
   font-weight: 400;
 }
 
-.HomePage {
-  display: grid;
-  grid-template-columns: 20% 1fr;
-}
-
-.Header {
-  grid-column: 2/3;
-}
-
-.Notes {
-  grid-column: 2/3;
-}
-
-/* SIDEBAR */
-
-.Sidebar {
-  width: 20%;
-  grid-area: sidebar;
-  position: fixed;
-  height: 100%;
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-.profile {
-  display: flex;
+.input {
+  background-color: #F2F2F2;
+  outline: none;
+  border: none;
   width: 100%;
-  gap: 14px;
-  height: 70px;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid var(--dark-blue-3);
-  background-color: var(--db2-db3);
+  height: 100%;
+  padding: 4px 8px;
 }
 
-.avatar-box {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgb(223, 223, 223);
-  display: flex;
+.input:focus-visible {
+  background-color: var(--white);
+}
+
+/* LOGIN, REGISTER */
+
+.App .nonauth {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
   place-content: center;
 }
 
-.profile img {
-  width: 80%;
+.LoginPage,
+.RegisterPage {
+  width: 1000px;
+  height: 400px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0px 3px 15px 3px rgba(0, 0, 0, 0.2);
+}
+
+.LoginPage {
+  grid-template-columns: .7fr 1fr;
+}
+
+.RegisterPage {
+  grid-template-columns: 1fr .7fr;
+}
+
+.login.col-left {
+  grid-column: 1 / 2;
+}
+
+.login.col-right {
+  grid-column: 2 / 3;
+}
+
+.register.col-left {
+  grid-column: 2 / 3;
+}
+
+.register.col-right {
+  grid-row-start: 1;
+  grid-column: 1 / 2;
+}
+
+.col-left,
+.col-right {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 18px;
+  padding: 24px;
+}
+
+.welcome-btn {
+  margin: 0 auto;
+}
+
+.col-right .toggle-theme {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+:is(.LoginInput, .RegisterInput) .title {
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-box {
+  width: 300px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+}
+
+.input-box .input:focus-visible {
+  border-left: 1px solid rgb(184, 184, 184);
+}
+
+[class$='icon'] {
+  margin: 0 5px;
+  font-size: 24px;
+}
+
+.btn-login,
+.btn-register {
+  margin: 0 auto;
+}
+
+
+/* HOME */
+
+.App .authed {
+  max-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+.HomePage,
+.AddPage,
+.ArchivePage {
+  width: 100%;
+  grid-column-start: 2;
+  overflow-y: scroll;
+}
+
+.Header {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  height: var(--header-h);
+  z-index: 10;
+}
+
+.status-notes {
+  margin: 100px 0 30px;
+  text-align: center;
+}
+
+.searchbar {
+  width: 50%;
+}
+
+.searchbar .input {
+  padding: 0 8px;
+  width: 100%;
+  min-width: 200px;
+  height: 30px;
+}
+
+.toggle-menu {
+  display: flex;
+  margin-left: auto;
+  gap: 14px;
+}
+
+.Sidebar {
+  width: 250px;
+  min-height: 100vh;
+  position: fixed;
+  min-height: 100vh;
+  border: 1px solid red;
+  z-index: 10;
+}
+
+.profile {
+  width: 100%;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid red;
+  overflow: hidden;
+}
+
+.avatar-box {
+  display: flex;
+  place-content: center;
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.avatar-box img {
+  width: 100%;
   object-fit: cover;
 }
 
 .user-info {
-  color: var(--white);
+  width: 100%;
 }
 
 .user-info .email {
@@ -131,32 +295,25 @@ p {
   font-weight: 400;
 }
 
-.nav-menu {
-  background-color: var(--dark-blue-1);
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 70px);
-}
-
 .nav-item {
   width: 100%;
   display: flex;
   gap: 12px;
-  padding: 12px;
+  padding: 8px;
   cursor: pointer;
   transition: all .2s ease;
 }
 
 .nav-item:where(:hover, .active) {
-  background-color: var(--white);
-  color: var(--purple);
+  background-color: var(--light-grey);
+  color: ;
   border-left: 4px solid var(--blue);
-  padding-left: 14px;
+  padding-left: 12px;
 }
 
 .nav-item.dark:where(:hover, .active) {
-  background-color: var(--dark-blue-3);
-  color: var(--blue);
+  background-color: ;
+  color: ;
 }
 
 .nav-icon {
@@ -172,304 +329,78 @@ p {
   font-weight: 400;
 }
 
-
-/* MAIN */
-
-.LoginPage,
-.RegisterPage,
-.AddPage {
-  margin: 0 auto;
-  max-width: 1440px;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-}
-
-.LoginInput {
-  display: grid;
-  grid-template-columns: .7fr 1fr;
-}
-
-.RegisterInput {
-  display: grid;
-  grid-template-columns: 1fr .7fr;
-}
-
-.LoginInput,
-.RegisterInput {
-  width: 100%;
-  max-width: 1000px;
-  height: 500px;
-  overflow: hidden;
-  box-shadow: 0px 3px 15px 3px rgba(0, 0, 0, 0.2);
-}
-
-.col-left {
-  background-color: var(--dark-blue-3);
-  color: var(--white);
-  padding: 50px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.col-right {
-  background-color: var(--w-db2);
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login.col-left {
-  grid-column: 1 / 2;
-}
-
-.login.col-right {
-  grid-column: 2 / 3;
-}
-
-.register.col-right {
-  grid-row-start: 1;
-  grid-column: 1 / 2;
-}
-
-.register.col-left {
-  grid-column: 2 / 3;
-}
-
-.welcome-title {
-  margin-bottom: 10px;
-  font-size: 38px;
-  font-weight: 600;
-}
-
-.welcome-subtitle {
-  margin-bottom: 30%;
-}
-
-.ask {
-  margin-bottom: 18px;
-  font-weight: 500;
-}
-
-.welcome-btn {
-  border: 1px solid currentColor;
-  color: var(--white);
-  width: 125px;
-  border-radius: 30px;
-  padding: 10px 15px;
-  cursor: pointer;
-  font-size: 18px;
-  transition: .1s ease-in;
-}
-
-.welcome-btn:hover {
-  background-color: var(--white);
-  color: var(--purple);
-}
-
-.auth-title,
-.addnote-title {
-  color: var(--purple);
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 38px;
-  font-weight: 600;
-}
-
-.auth-form,
-.addnote-form {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.auth-form .input-box {
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  background-color: #F2F2F2;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
-}
-
-.username-icon,
-.email-icon,
-.password-icon {
-  margin: 0 10px;
-  font-size: 28px;
-}
-
-.auth-form input,
-.addnote-form :where(input, textarea) {
-  all: unset;
-  width: 100%;
-  height: 45px;
-  padding: 0 8px;
-  font-size: 18px;
-  background-color: #F2F2F2;
-  border: 1px solid transparent;
-}
-
-.addnote-form textarea {
-  min-height: 200px;
-  resize: none;
-  overflow-wrap: break-word !important;
-}
-
-.auth-form input:focus-visible,
-.addnote-form :where(input, textarea):focus-visible {
-  background-color: var(--white);
-  border-left: 1px solid rgb(184, 184, 184);
-}
-
-.btn-login,
-.btn-register,
-.btn-addnote {
-  border: 1px solid currentColor;
-  color: var(--purple);
-  width: max-content;
-  border-radius: 30px;
-  margin: 15px auto 0;
-  padding: 10px 18px;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  transition: .1s ease-in;
-}
-
-:is(.btn-login, .btn-register, .btn-addnote).dark {
-  color: var(--white);
-  border: 1px solid var(--white);
-}
-
-:is(.btn-login, .btn-register, .btn-addnote):hover {
-  background-color: var(--purple);
-  border: 1px solid var(--purple);
-  color: var(--white);
-}
-
-/* Header */
-
-.Header {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr .2fr;
-  width: 100%;
-  display: flex;
-  height: 70px;
-  padding: 0 42px;
-  box-shadow: 0px 1px 1px 2px rgba(0, 0, 0, 0.1);
-  background-color: var(--w-db3);
-}
-
-.Searchbar {
-  width: 50%;
-}
-
-.Searchbar input {
-  width: 100%;
-  min-width: 300px;
-  height: 40px;
-  padding: 0 12px;
-}
-
-.Header .toggle {
-  margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
-  gap: 20px;
-}
-
-.Header .toggle>* {
-  color: var(--fc-theme-1);
-}
-
-/* HOMEPAGE */
-
-
-.title-page {
-  margin: 18px auto;
-  text-align: center;
-  font-size: 32px;
-  font-weight: 400;
-  color: var(--fc-theme);
-}
-
-/* Notes */
-
 .NoteList {
-  padding: 24px;
-  background-color: var(--w-db2);
+  padding: 0 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin-bottom: 70px;
 }
 
 .NoteItem {
+  min-height: 250px;
+  border: 1px solid red;
   position: relative;
-  height: 250px;
-  padding: 24px;
-  overflow-wrap: break-word !important;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
-  background-color: var(--w-db3);
 }
 
 .note-content {
-  display: grid;
-  grid-template-columns: .3fr 1fr;
-  width: 100%;
-  height: calc(100% - 30px);
-  margin-bottom: 24px;
-  border: 2px solid var(--light-grey);
-}
-
-.date-box {
-  display: grid;
-  place-content: center;
-  min-width: 150px;
-  height: 100%;
-  border-right: 2px solid var(--light-grey);
-  color: var(--fc-theme);
-}
-
-.date-box .createdAt {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 8px;
   padding: 14px;
+  margin-bottom: 40px;
 }
 
-.content-box {
-  min-width: 250px;
-  height: 100%;
-  padding: 14px;
-  color: var(--fc-theme);
+.note-content .createdAt {
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
-.content-box .title {
-  margin-bottom: 4px;
-  font-size: 24px;
-  font-weight: 400;
+.note-content .title {
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.content-box .body {
-  font-weight: 300;
+.note-content .body {
+  font-size: 16px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.NoteItem .buttons {
-  position: absolute;
+.buttons {
   display: flex;
+  gap: 14px;
+  position: absolute;
   bottom: 14px;
   right: 14px;
-  gap: 14px;
 }
 
-.NoteItem .buttons>* {
-  color: var(--fc-theme);
+/* AddPage */
+
+.AddInputNote {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+}
+
+.AddInputNote .title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.AddInputNote .form {
+  width: 330px;
+}
+
+.AddInputNote .add-title {
+  height: 40px;
+}
+
+.AddInputNote .add-body {
+  height: 250px;
+}
+
+.btn-addnote {
+  margin: 14px auto 0;
 }

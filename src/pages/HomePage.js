@@ -50,7 +50,7 @@ const HomePage = () => {
 				keywordChange={keywordHandler}
 				onLogout={onLogoutHandler}
 			/>
-			<h1 className="title-page">Active Notes</h1>
+			<h1 className="status-notes">Active Notes</h1>
 			<NoteList
 				notes={filteredNotes}
 				onDelete={deleteHandler}
