@@ -2,10 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import { register } from "../utils/network-data";
-import RegisterInput from "../components/RegisterInput";
 import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
+import RegisterInput from "../components/RegisterInput";
+import ToggleTheme from "../components/ToggleTheme";
 
 const RegisterPage = () => {
+	const { localeValue, themeValue } = React.useContext(Context);
+	const { locale } = localeValue;
+	const { toggleTheme } = themeValue;
+
 	const [name, nameHandler] = useInput("");
 	const [email, emailHandler] = useInput("");
 	const [password, passwordHandler] = useInput("");
@@ -28,7 +34,7 @@ const RegisterPage = () => {
 	return (
 		<div className="RegisterPage">
 			<div className="register col-left">
-				<h2 className="title">Hello, Friend!</h2>
+				<h1 className="title">Hello, Friend!</h1>
 				<p className="subtitle">
 					Enter your personal details and start journey with us.
 				</p>
@@ -39,6 +45,7 @@ const RegisterPage = () => {
 			</div>
 
 			<div className="register col-right">
+				<ToggleTheme onClick={toggleTheme} />
 				<RegisterInput
 					onRegister={registerHandler}
 					name={name}

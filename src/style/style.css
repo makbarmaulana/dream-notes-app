@@ -2,7 +2,7 @@
 
 :root {
   --ff-poppins: 'Poppins', sans-serif;
-  --header-h: 70px;
+  --header-height: 70px;
   --black: #000;
   --white: #FFF;
   --light-grey: rgba(211, 211, 211, .8);
@@ -95,7 +95,73 @@ h3 {
   background-color: var(--white);
 }
 
-/* LOGIN, REGISTER */
+.LoginPage .ToggleTheme {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.RegisterPage .ToggleTheme {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.toggle-box {
+  width: 60px;
+  height: 30px;
+  position: relative;
+  background: var(--dark-blue-3);
+  border-radius: 80px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ToggleTheme input {
+  display: none;
+}
+
+#btn-mode:checked~.toggle-box {
+  background: var(--white);
+}
+
+.toggle-box:before {
+  position: absolute;
+  left: 5%;
+  content: "";
+  height: 24px;
+  width: 24px;
+  background: var(--white);
+  border-radius: 80px;
+  transition: 0.4s ease;
+  z-index: 10;
+}
+
+#btn-mode:checked~.toggle-box:before {
+  left: 95%;
+  transform: translateX(-100%);
+  background: var(--dark-blue-1);
+}
+
+.toggle-box>* {
+  width: 20px;
+  height: 20px;
+}
+
+.toggle-box .sun {
+  fill: var(--white);
+}
+
+.toggle-box .moon {
+  fill: var(--dark-blue-3);
+}
+
+
+/* AUTH PAGE */
 
 .App .nonauth {
   width: 100vw;
@@ -123,19 +189,27 @@ h3 {
 
 .login.col-left {
   grid-column: 1 / 2;
+  background-color: var(--dark-blue-3);
+  color: var(--white);
 }
 
 .login.col-right {
   grid-column: 2 / 3;
+  background-color: var(--w-db2);
+  color: var(--fc-theme);
 }
 
 .register.col-left {
   grid-column: 2 / 3;
+  background-color: var(--dark-blue-3);
+  color: var(--white);
 }
 
 .register.col-right {
   grid-row-start: 1;
   grid-column: 1 / 2;
+  background-color: var(--w-db2);
+  color: var(--fc-theme);
 }
 
 .col-left,
@@ -143,31 +217,28 @@ h3 {
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid red;
   display: grid;
   place-content: center;
+  place-items: center;
   text-align: center;
   gap: 18px;
   padding: 24px;
 }
 
-.welcome-btn {
-  margin: 0 auto;
-}
-
-.col-right .toggle-theme {
-  position: absolute;
-  top: 14px;
-  right: 14px;
+.ask {
+  font-weight: 400;
+  margin-top: 42px;
 }
 
 :is(.LoginInput, .RegisterInput) .title {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  color: var(--blue);
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 14px;
 }
 
@@ -176,7 +247,7 @@ h3 {
   height: 40px;
   display: flex;
   align-items: center;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
   background-color: whitesmoke;
 }
 
@@ -185,17 +256,55 @@ h3 {
 }
 
 [class$='icon'] {
-  margin: 0 5px;
+  margin: 0 10px;
   font-size: 24px;
+  color: var(--black);
+}
+
+.btn-login,
+.btn-register,
+.welcome-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  border-radius: 25px;
+  transition: .13s ease-in;
+  font-weight: 400;
 }
 
 .btn-login,
 .btn-register {
-  margin: 0 auto;
+  margin-top: 14px;
+  color: var(--blue);
+  border: 1px solid currentColor;
 }
 
+:is(.btn-login,
+  .btn-register):hover {
+  background-color: var(--blue);
+  color: var(--white);
+  border: 1px solid transparent;
+}
 
-/* HOME */
+[data-theme='dark'] :where(.btn-login, .btn-register) {
+  background-color: white;
+  border: 1px solid transparent;
+}
+
+.welcome-btn {
+  color: var(--white);
+  background-color: var(--blue);
+  border: 1px solid transparent;
+}
+
+.welcome-btn:hover {
+  color: var(--blue);
+  background-color: var(--white);
+  border: 1px solid transparent;
+}
+
+/* PAGE */
 
 .App .authed {
   max-width: 100vw;
@@ -221,7 +330,7 @@ h3 {
   display: flex;
   align-items: center;
   padding: 0 28px;
-  height: var(--header-h);
+  height: var(--header-height);
   z-index: 10;
 }
 

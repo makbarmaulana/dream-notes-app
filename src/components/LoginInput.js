@@ -5,7 +5,7 @@ import Button from "./Button";
 const LoginInput = (props) => {
 	return (
 		<div className="LoginInput">
-			<h2 className="title">Login</h2>
+			<h1 className="title">Login</h1>
 			<form className="form">
 				<div className="input-box">
 					<IoMailOutline className="email-icon" />

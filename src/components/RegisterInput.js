@@ -13,7 +13,7 @@ const RegisterInput = (props) => {
 
 	return (
 		<div className="RegisterInput">
-			<h2 className="title">Create an account</h2>
+			<h1 className="title">Create an account</h1>
 			<form className="form">
 				<div className="input-box">
 					<IoPersonOutline className="username-icon" />
@@ -26,7 +26,7 @@ const RegisterInput = (props) => {
 					/>
 				</div>
 				<div className="input-box">
-					<IoMailOutline className="password-icon" />
+					<IoMailOutline className="email-icon" />
 					<input
 						className="input"
 						type="email"
@@ -39,7 +39,7 @@ const RegisterInput = (props) => {
 					<IoLockClosedOutline className="password-icon" />
 					<input
 						className="input"
-						type="pasword"
+						type="password"
 						placeholder="Password"
 						value={props.password}
 						onChange={props.onPasswordChange}
@@ -49,7 +49,7 @@ const RegisterInput = (props) => {
 					<IoLockClosedOutline className="password-icon" />
 					<input
 						className="input"
-						type="pasword"
+						type="password"
 						placeholder="Confirm Password"
 						value={props.confirmPassword}
 						onChange={props.onConfirmPasswordChange}

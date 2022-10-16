@@ -1,15 +1,15 @@
 import React from "react";
 import { useInput } from "../hooks/useInput";
 import { login, putAccessToken } from "../utils/network-data";
-import LoginInput from "../components/LoginInput";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
-import Button from "../components/Button";
+import LoginInput from "../components/LoginInput";
+import ToggleTheme from "../components/ToggleTheme";
 
 const LoginPage = (props) => {
 	const { localeValue, themeValue } = React.useContext(Context);
 	const { locale } = localeValue;
-	const { theme, toggleTheme } = themeValue;
+	const { toggleTheme } = themeValue;
 
 	const [email, emailHandler] = useInput();
 	const [password, passwordHandler] = useInput("");
@@ -30,9 +30,8 @@ const LoginPage = (props) => {
 
 	return (
 		<div className="LoginPage">
-
 			<div className="login col-left">
-				<h2 className="title">Welcome Back!</h2>
+				<h1 className="title">Welcome Back!</h1>
 				<p className="subtitle">
 					to keep connected with us please login with your personal info.
 				</p>
@@ -43,11 +42,7 @@ const LoginPage = (props) => {
 			</div>
 
 			<div className="login col-right">
-				<Button
-					className="toggle-theme"
-					onClick={toggleTheme}
-					label={theme.toUpperCase()}
-				/>
+				<ToggleTheme onClick={toggleTheme} />
 				<LoginInput
 					onLogin={loginHandler}
 					email={email}
@@ -56,7 +51,6 @@ const LoginPage = (props) => {
 					onPasswordChange={passwordHandler}
 				/>
 			</div>
-
 		</div>
 	);
 };
