@@ -9,7 +9,7 @@ const AddNote = (props) => {
 				<input
 					className="input add-title"
 					type="text"
-					placeholder="title..."
+					placeholder="Add title..."
 					value={props.title}
 					onChange={props.onTitleChange}
 					required
@@ -17,7 +17,7 @@ const AddNote = (props) => {
 				<textarea
 					className="input add-body"
 					type="text"
-					placeholder="description..."
+					placeholder="Add description..."
 					value={props.body}
 					onChange={props.onBodyChange}
 					data-role="none"

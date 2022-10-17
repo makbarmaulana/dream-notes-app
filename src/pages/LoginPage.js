@@ -3,6 +3,7 @@ import { useInput } from "../hooks/useInput";
 import { login, putAccessToken } from "../utils/network-data";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
+import { useNavigate } from "react-router-dom";
 import LoginInput from "../components/LoginInput";
 import ToggleTheme from "../components/ToggleTheme";
 
@@ -14,6 +15,8 @@ const LoginPage = (props) => {
 	const [email, emailHandler] = useInput();
 	const [password, passwordHandler] = useInput("");
 
+	const navigate = useNavigate();
+
 	const loginHandler = async (e) => {
 		e.preventDefault();
 
@@ -24,7 +27,7 @@ const LoginPage = (props) => {
 		if (!error) {
 			putAccessToken(data.accessToken);
 			props.authed(data);
-			window.location.reload();
+			navigate("/home");
 		}
 	};
 

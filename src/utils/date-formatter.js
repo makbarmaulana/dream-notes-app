@@ -1,8 +1,7 @@
 export const showFormattedDate = (date, locale) => {
 	const options = {
-		// weekday: "long",
 		year: "numeric",
-		month: "long",
+		month: "short",
 		day: "numeric",
 	};
 	return new Date(date).toLocaleDateString(
