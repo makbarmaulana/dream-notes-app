@@ -20,9 +20,10 @@ const HomePage = () => {
 		await deleteNote(id);
 		fetchActiveNotes();
 	};
-
+	
 	const archiveHandler = async (id) => {
 		await archiveNote(id);
+		fetchActiveNotes();
 	};
 
 	const keywordHandler = (keyword) => {

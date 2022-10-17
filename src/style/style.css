@@ -41,11 +41,13 @@
 
 html {
   font-family: var(--ff-poppins);
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--w-db1);
   transition: background .3s ease;
+  overflow-y: scroll;
 }
 
 a {
@@ -331,13 +333,13 @@ h3 {
 .ArchivePage {
   width: 100%;
   grid-column-start: 2;
-  overflow-y: scroll;
   background-color: var(--w-db2);
   transition: .3s ease;
 }
 
 .Header {
   width: calc(100% - var(--sidebar-width));
+  height: var(--header-height);
   position: fixed;
   top: 0;
   left: var(--sidebar-width);
@@ -346,11 +348,14 @@ h3 {
   grid-template-columns: 1fr .25fr;
   align-items: center;
   padding: 0 28px;
-  height: var(--header-height);
   z-index: 10;
   background-color: var(--w-db3);
   box-shadow: var(--box-shadow-1);
   transition: .3s ease;
+}
+
+.Header.hide {
+  top: -10%;
 }
 
 .status-notes {
@@ -360,9 +365,11 @@ h3 {
 }
 
 .searchbar {
+  height: 38px;
   display: flex;
   align-items: center;
   width: 40%;
+  min-width: 250px;
   background-color: var(--purple);
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
   transition: var(--transition-2);
@@ -372,7 +379,6 @@ h3 {
   background-color: var(--dark-blue-1);
 }
 
-
 .search-icon {
   font-size: 20px;
   color: var(--white);
@@ -380,10 +386,10 @@ h3 {
 
 .searchbar .input {
   background-color: var(--purple);
-  min-width: 200px;
-  height: 35px;
+  height: 100%;
   font-size: 16px;
   user-select: none;
+  color: var(--white);
 }
 
 [data-theme='dark'] .searchbar .input {
@@ -395,6 +401,7 @@ h3 {
 }
 
 .searchbar .input:focus-visible {
+  color: var(--black);
   background-color: var(--white);
 }
 

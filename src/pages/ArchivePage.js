@@ -18,12 +18,12 @@ const ArchivePage = () => {
 
 	const deleteHandler = async (id) => {
 		await deleteNote(id);
-
 		fetchArchiveNotes();
 	};
 
 	const archiveHandler = async (id) => {
 		await unarchiveNote(id);
+		fetchArchiveNotes();
 	};
 
 	const keywordHandler = (keyword) => {

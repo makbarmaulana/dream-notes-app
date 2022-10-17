@@ -14,6 +14,30 @@ const Header = (props) => {
 	const { toggleTheme } = themeValue;
 	const { setAuthedUser } = userValue;
 
+	const [scrollDirection, setScrollDirection] = React.useState(null);
+
+	React.useEffect(() => {
+		let lastScrollY = window.pageYOffset;
+
+		const updateScrollDirection = () => {
+			const currentScrollY = window.pageYOffset;
+			const direction = currentScrollY > lastScrollY ? "hide" : "show";
+
+			if (direction !== scrollDirection && (currentScrollY - lastScrollY > 10 || currentScrollY - lastScrollY < -10)
+			) {
+				setScrollDirection(direction);
+			}
+
+			lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
+		};
+
+		window.addEventListener("scroll", updateScrollDirection);
+		return () => {
+			window.removeEventListener("scroll", updateScrollDirection);
+		};
+
+	}, [scrollDirection]);
+
 	const onLogoutHandler = (e) => {
 		e.preventDefault();
 		putAccessToken("");
@@ -22,7 +46,7 @@ const Header = (props) => {
 	};
 
 	return (
-		<header className="Header">
+		<header className={`Header ${scrollDirection}`}>
 			<div className="searchbar">
 				<BsSearch className="search-icon" />
 				<input
