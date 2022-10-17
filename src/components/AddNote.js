@@ -26,7 +26,7 @@ const AddNote = (props) => {
 				<Button
 					onClick={props.onAddNote}
 					className="btn-addnote"
-					label="ADD NOTE"
+					label="ADD"
 				/>
 			</form>
 		</div>

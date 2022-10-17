@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import AddNote from "../components/AddNote";
 import { useInput } from "../hooks/useInput";
 import { addNote } from "../utils/network-data";
+import AddNote from "../components/AddNote";
 
 const AddPage = () => {
 	const [title, titleHandler] = useInput("");
@@ -12,9 +12,8 @@ const AddPage = () => {
 
 	const addNoteHandler = async (e) => {
 		e.preventDefault();
-
+		
 		const { error } = await addNote({ title, body });
-
 		if (!error) {
 			navigate("/home");
 		}

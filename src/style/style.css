@@ -275,31 +275,32 @@ h3 {
 
 .btn-login,
 .btn-register,
-.welcome-btn {
+.welcome-btn,
+.btn-addnote {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 20px;
+  padding: 5px 16px;
   border-radius: 25px;
   transition: var(--transition-2);
   font-weight: 400;
 }
 
 .btn-login,
-.btn-register {
+.btn-register,
+.btn-addnote {
   margin-top: 14px;
   color: var(--blue);
   border: 1px solid currentColor;
 }
 
-:is(.btn-login,
-  .btn-register):hover {
+:is(.btn-login, .btn-register, .btn-addnote):hover {
   background-color: var(--blue);
   color: var(--white);
   border: 1px solid transparent;
 }
 
-[data-theme='dark'] :where(.btn-login, .btn-register) {
+[data-theme='dark'] :where(.btn-login, .btn-register, .btn-addnote) {
   background-color: white;
   border: 1px solid transparent;
 }
@@ -364,6 +365,11 @@ h3 {
   width: 40%;
   background-color: var(--purple);
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  transition: var(--transition-2);
+}
+
+[data-theme='dark'] .searchbar {
+  background-color: var(--dark-blue-1);
 }
 
 
@@ -378,6 +384,10 @@ h3 {
   height: 35px;
   font-size: 16px;
   user-select: none;
+}
+
+[data-theme='dark'] .searchbar .input {
+  background-color: var(--dark-blue-1);
 }
 
 .searchbar .input::placeholder {
@@ -406,7 +416,7 @@ h3 {
 
 .header-toggle .toggle-lang {
   width: 38px;
-  padding: 6px 6px;
+  padding: 6px 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,8 +428,16 @@ h3 {
   background-color: var(--purple);
 }
 
+[data-theme='dark'] .header-toggle .toggle-lang {
+  background-color: var(--dark-blue-1);
+}
+
 .header-toggle .toggle-lang:hover {
   background-color: #5e58ac;
+}
+
+[data-theme='dark'] .header-toggle .toggle-lang:hover {
+  background-color: #1B2B54;
 }
 
 .header-toggle .ToggleTheme {
@@ -435,7 +453,7 @@ h3 {
   align-items: center;
   margin: 0 auto;
   color: rgb(226, 79, 63);
-  font-size: 26px;
+  font-size: 30px;
   transition: var(--transition-2);
 }
 
@@ -466,7 +484,6 @@ h3 {
   gap: 12px;
   padding: 12px;
   overflow: hidden;
-  color: var(--white);
   background-color: #6963BB;
   box-shadow: var(--box-shadow-1);
   border-bottom: 1px solid transparent;
@@ -499,11 +516,13 @@ h3 {
 .user-info .email {
   font-size: 14px;
   font-weight: 400;
+  color: var(--white);
 }
 
 .user-info .username {
   font-size: 12px;
   font-weight: 300;
+  color: var(--white);
 }
 
 .nav-menu {
@@ -609,6 +628,7 @@ h3 {
 .AddInputNote .title {
   text-align: center;
   margin-bottom: 30px;
+  color: var(--fc-theme);
 }
 
 .AddInputNote .form {
@@ -621,8 +641,4 @@ h3 {
 
 .AddInputNote .add-body {
   height: 250px;
-}
-
-.btn-addnote {
-  margin: 14px auto 0;
 }

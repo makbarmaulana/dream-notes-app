@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ROUTE_PROPS } from "./utils/route-properties";
-import { getUserLogged } from "./utils/network-data";
+import { getUserLogged, putAccessToken } from "./utils/network-data";
+import { Context } from "./context/Context";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import { Context } from "./context/Context";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
@@ -16,6 +16,7 @@ const App = () => {
 	React.useEffect(() => {
 		const fetchAuthedUser = async () => {
 			const { data } = await getUserLogged();
+
 			setAuthedUser(data);
 			setInitializing(false);
 		};
@@ -29,6 +30,13 @@ const App = () => {
 			: document.documentElement.setAttribute("data-theme", "dark");
 	}, [theme]);
 
+	const setDataUser = async ({ accessToken }) => {
+		putAccessToken(accessToken);
+		const { data } = await getUserLogged();
+
+		setAuthedUser(data);
+	};
+
 	const toggleLocale = () => {
 		setLocale((prevLocale) => (prevLocale === "en" ? "id" : "en"));
 	};
@@ -37,11 +45,11 @@ const App = () => {
 		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 	};
 
-	const contextValue = React.useMemo(
-		() => ({
+	const contextValue = React.useMemo(() =>
+		({
 			localeValue: { locale, toggleLocale },
 			themeValue: { theme, toggleTheme },
-			userValue: { authedUser },
+			userValue: { authedUser, setAuthedUser },
 		}),
 
 		[locale, theme, authedUser]
@@ -57,7 +65,7 @@ const App = () => {
 				{authedUser === null ? (
 					<div className="nonauth">
 						<Routes>
-							<Route path="/*" element={<LoginPage authed={setAuthedUser} />} />
+							<Route path="/*" element={<LoginPage authed={setDataUser} />} />
 							<Route path="/register" element={<RegisterPage />} />
 						</Routes>
 					</div>

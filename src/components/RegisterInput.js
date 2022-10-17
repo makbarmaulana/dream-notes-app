@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	IoPersonOutline,
-	IoMailOutline,
-	IoLockClosedOutline,
-} from "react-icons/io5";
+import { IoPersonOutline, IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 import { Context } from "../context/Context";
 import Button from "./Button";
 

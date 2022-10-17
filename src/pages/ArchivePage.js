@@ -1,22 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import NoteList from "../components/NoteList";
-import { getArchivedNotes, putAccessToken, deleteNote, unarchiveNote } from "../utils/network-data";
+import { getArchivedNotes, deleteNote, unarchiveNote } from "../utils/network-data";
 
 const ArchivePage = () => {
 	const [notes, setNotes] = React.useState([]);
 	const [keyword, setKeyword] = React.useState("");
-	const navigate = useNavigate();
+
+	React.useEffect(() => {
+		fetchArchiveNotes();
+	}, []);
 
 	const fetchArchiveNotes = async () => {
 		const { data } = await getArchivedNotes();
 		setNotes(data);
 	};
-
-	React.useEffect(() => {
-		fetchArchiveNotes();
-	}, []);
 
 	const deleteHandler = async (id) => {
 		await deleteNote(id);
@@ -25,9 +23,7 @@ const ArchivePage = () => {
 	};
 
 	const archiveHandler = async (id) => {
-		await unarchiveNote(id)
-
-		navigate("/");
+		await unarchiveNote(id);
 	};
 
 	const keywordHandler = (keyword) => {
@@ -38,18 +34,9 @@ const ArchivePage = () => {
 		note.title.toLowerCase().includes(keyword.toLowerCase())
 	);
 
-	const onLogoutHandler = () => {
-		putAccessToken("");
-		window.location.reload();
-	};
-
 	return (
 		<div className="HomePage">
-			<Header
-				keyword={keyword}
-				keywordChange={keywordHandler}
-				onLogout={onLogoutHandler}
-			/>
+			<Header keyword={keyword} keywordChange={keywordHandler} />
 			<h1 className="status-notes">Archive Notes</h1>
 			<NoteList
 				notes={filteredNotes}

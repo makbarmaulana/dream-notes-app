@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Context } from "../context/Context";
-import avatar from "../assets/avatar.png";
 import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill } from "react-icons/bs";
+import avatar from "../assets/avatar.png";
 
 const Sidebar = () => {
-	const { localeValue, themeValue, userValue } = React.useContext(Context);
+	const { localeValue, userValue } = React.useContext(Context);
 	const { locale } = localeValue;
-	const { theme } = themeValue
 	const { authedUser } = userValue;
 
 	const navigation = [
@@ -58,7 +57,9 @@ const Sidebar = () => {
 						}
 					>
 						<i className="nav-icon">{item.icon}</i>
-						<p className="nav-title">{locale === "en" ? item.title.en : item.title.id}</p>
+						<p className="nav-title">
+							{locale === "en" ? item.title.en : item.title.id}
+						</p>
 					</NavLink>
 				))}
 			</div>

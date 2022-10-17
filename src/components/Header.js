@@ -1,14 +1,25 @@
 import React from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
-import { Context } from "../context/Context";
 import { BsSearch } from "react-icons/bs";
+import { putAccessToken } from "../utils/network-data";
+import { Context } from "../context/Context";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import ToggleTheme from "./ToggleTheme";
 
 const Header = (props) => {
-	const { localeValue, themeValue } = React.useContext(Context);
+	const navigate = useNavigate();
+	const { localeValue, themeValue, userValue } = React.useContext(Context);
 	const { locale, toggleLocale } = localeValue;
 	const { toggleTheme } = themeValue;
+	const { setAuthedUser } = userValue;
+
+	const onLogoutHandler = (e) => {
+		e.preventDefault();
+		putAccessToken("");
+		setAuthedUser(null);
+		navigate("/");
+	};
 
 	return (
 		<header className="Header">
@@ -30,7 +41,7 @@ const Header = (props) => {
 				/>
 				<Button
 					className="btn-logout"
-					onClick={props.onLogout}
+					onClick={onLogoutHandler}
 					label={<RiLogoutBoxRLine />}
 				/>
 				<ToggleTheme onClick={toggleTheme} />
