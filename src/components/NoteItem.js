@@ -19,7 +19,7 @@ const NoteItem = (props) => {
 				<Button
 					className="btn-archive"
 					onClick={() => props.onArchive(props.id)}
-					label={props.archived ? <RiInboxUnarchiveFill /> : <RiInboxArchiveFill />}
+					label={props.archived ? <RiInboxUnarchiveFill className="unarchive-icon" /> : <RiInboxArchiveFill className="archive-icon"/>}
 				/>
 				<Button
 					className="btn-delete"

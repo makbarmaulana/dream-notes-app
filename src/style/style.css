@@ -668,11 +668,30 @@ h3 {
 }
 
 .buttons {
+  position: absolute;
   display: flex;
   gap: 14px;
-  position: absolute;
   bottom: 14px;
   right: 14px;
+  font-size: 24px;
+}
+
+.btn-archive > svg {
+  font-size: 26px;
+  margin: 0;
+}
+
+.btn-archive .archive-icon {
+  color: rgb(27, 158, 27);
+}
+
+.btn-archive .unarchive-icon {
+  color: rgb(230, 161, 34);
+}
+
+.btn-delete {
+  color: rgb(214, 49, 30);
+  font-size: 24px;
 }
 
 /* AddPage */
