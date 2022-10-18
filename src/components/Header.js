@@ -14,7 +14,7 @@ const Header = (props) => {
 	const { toggleTheme } = themeValue;
 	const { setAuthedUser } = userValue;
 
-	const [scrollDirection, setScrollDirection] = React.useState(null);
+	const [scrollDirection, setScrollDirection] = React.useState("show");
 
 	React.useEffect(() => {
 		let lastScrollY = window.pageYOffset;
@@ -32,9 +32,8 @@ const Header = (props) => {
 		};
 
 		window.addEventListener("scroll", updateScrollDirection);
-		return () => {
-			window.removeEventListener("scroll", updateScrollDirection);
-		};
+
+		return () => window.removeEventListener("scroll", updateScrollDirection);
 
 	}, [scrollDirection]);
 

@@ -1,13 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Context } from "../context/Context";
-import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill } from "react-icons/bs";
+import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill, BsJustify, BsArrowRight } from "react-icons/bs";
 import avatar from "../assets/avatar.png";
+import Button from "./Button"
 
 const Sidebar = () => {
 	const { localeValue, userValue } = React.useContext(Context);
 	const { locale } = localeValue;
 	const { authedUser } = userValue;
+
+	const [toggleSidebar, setToggleSidebar] = React.useState("show");
+
+	React.useEffect(() => {
+		toggleSidebar === "hide" 
+		? document.documentElement.style.setProperty("--sidebar-width", "50px") 
+		: document.documentElement.style.setProperty("--sidebar-width", "230px");
+		
+	}, [toggleSidebar]);
+
+	const toggleSidebarHandler = () => {
+		setToggleSidebar((prevStatus) => prevStatus === "hide" ? "show" : "hide");
+	};
 
 	const navigation = [
 		{
@@ -37,7 +51,7 @@ const Sidebar = () => {
 	];
 
 	return (
-		<div className="Sidebar">
+		<div className={`Sidebar ${toggleSidebar}`}>
 			<div className="profile">
 				<figure className="avatar-box">
 					<img src={avatar} alt="avatar-img" />
@@ -45,6 +59,9 @@ const Sidebar = () => {
 				<div className="user-info">
 					<p className="email">{authedUser.email}</p>
 					<p className="username">{authedUser.name}</p>
+				</div>
+				<div className="sidebar-toggle">
+					<Button className="sidebar-btn" onClick={toggleSidebarHandler} label={toggleSidebar === "hide" ? <BsArrowRight /> : <BsJustify /> }/>
 				</div>
 			</div>
 			<div className="nav-menu">

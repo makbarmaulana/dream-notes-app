@@ -4,7 +4,7 @@ import Button from "./Button";
 const AddNote = (props) => {
 	return (
 		<div className="AddInputNote">
-			<h2 className="title">Add Note</h2>
+			<h1 className="title">Add Note</h1>
 			<form className="form">
 				<input
 					className="input add-title"
