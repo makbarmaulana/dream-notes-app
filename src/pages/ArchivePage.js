@@ -6,27 +6,39 @@ import { Context } from "../context/Context";
 
 const ArchivePage = () => {
 	const { locale } = React.useContext(Context);
-	
+
 	const [notes, setNotes] = React.useState([]);
 	const [keyword, setKeyword] = React.useState("");
+	const [loading, setLoading] = React.useState(false);
+
+	const fetchNotes = () => {
+		getArchivedNotes().then(({ data }) => {
+			setNotes(data);
+			setLoading(false);
+		});
+	};
 
 	React.useEffect(() => {
-		fetchArchiveNotes();
+		setLoading(true);
+		fetchNotes();
 	}, []);
 
-	const fetchArchiveNotes = async () => {
-		const { data } = await getArchivedNotes();
-		setNotes(data);
+	const deleteHandler = (id) => {
+		if (window.confirm("delete?")) {
+			deleteNote(id).then(() => {
+				fetchNotes();
+				alert("delete success");
+			});
+		}
 	};
 
-	const deleteHandler = async (id) => {
-		await deleteNote(id);
-		fetchArchiveNotes();
-	};
-
-	const archiveHandler = async (id) => {
-		await unarchiveNote(id);
-		fetchArchiveNotes();
+	const archiveHandler = (id) => {
+		if (window.confirm("unarchive?")) {
+			unarchiveNote(id).then(() => {
+				fetchNotes();
+				alert("note unarchived!")
+			});
+		}
 	};
 
 	const keywordHandler = (keyword) => {
@@ -43,11 +55,25 @@ const ArchivePage = () => {
 			<h1 className="status-notes">
 				{locale === "en" ? "Archive Notes" : "Arsip Catatan"}
 			</h1>
-			<NoteList
-				notes={filteredNotes}
-				onDelete={deleteHandler}
-				onArchive={archiveHandler}
-			/>
+			{loading ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					Fetching Data...
+				</p>
+			) : notes.length < 1 ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					Archive Notes Empty
+				</p>
+			) : filteredNotes.length < 1 ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					No Notes Found!
+				</p>
+			) : (
+				<NoteList
+					notes={filteredNotes}
+					onDelete={deleteHandler}
+					onArchive={archiveHandler}
+				/>
+			)}
 		</div>
 	);
 };

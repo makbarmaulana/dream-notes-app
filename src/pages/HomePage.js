@@ -9,24 +9,36 @@ const HomePage = () => {
 
 	const [notes, setNotes] = React.useState([]);
 	const [keyword, setKeyword] = React.useState("");
+	const [loading, setLoading] = React.useState(false);
+
+	const fetchNotes = () => {
+		getActiveNotes().then(({ data }) => {
+			setNotes(data);
+			setLoading(false);
+		});
+	};
 
 	React.useEffect(() => {
-		fetchActiveNotes();
+		setLoading(true);
+		fetchNotes();
 	}, []);
 
-	const fetchActiveNotes = async () => {
-		const { data } = await getActiveNotes();
-		setNotes(data);
+	const deleteHandler = (id) => {
+		if (window.confirm("delete?")) {
+			deleteNote(id).then(() => {
+				fetchNotes();
+				alert("delete success");
+			});
+		}
 	};
 
-	const deleteHandler = async (id) => {
-		await deleteNote(id);
-		fetchActiveNotes();
-	};
-
-	const archiveHandler = async (id) => {
-		await archiveNote(id);
-		fetchActiveNotes();
+	const archiveHandler = (id) => {
+		if (window.confirm("archive?")) {
+			archiveNote(id).then(() => {
+				fetchNotes();
+				alert("note archived!");
+			});
+		}
 	};
 
 	const keywordHandler = (keyword) => {
@@ -43,11 +55,26 @@ const HomePage = () => {
 			<h1 className="status-notes">
 				{locale === "en" ? "Active Notes" : "Catatan Aktif"}
 			</h1>
-			<NoteList
-				notes={filteredNotes}
-				onDelete={deleteHandler}
-				onArchive={archiveHandler}
-			/>
+
+			{loading ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					Fetching Data...
+				</p>
+			) : notes.length < 1 ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					Active Notes Empty
+				</p>
+			) : filteredNotes.length < 1 ? (
+				<p style={{ display: "flex", placeContent: "center" }}>
+					No Notes Found!
+				</p>
+			) : (
+				<NoteList
+					notes={filteredNotes}
+					onDelete={deleteHandler}
+					onArchive={archiveHandler}
+				/>
+			)}
 		</div>
 	);
 };
