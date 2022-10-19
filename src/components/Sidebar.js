@@ -6,9 +6,7 @@ import avatar from "../assets/avatar.png";
 import Button from "./Button"
 
 const Sidebar = () => {
-	const { localeValue, userValue } = React.useContext(Context);
-	const { locale } = localeValue;
-	const { authedUser } = userValue;
+	const { locale, authedUser } = React.useContext(Context);
 
 	const [toggleSidebar, setToggleSidebar] = React.useState("show");
 

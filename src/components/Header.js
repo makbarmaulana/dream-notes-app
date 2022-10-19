@@ -9,10 +9,7 @@ import ToggleTheme from "./ToggleTheme";
 
 const Header = (props) => {
 	const navigate = useNavigate();
-	const { localeValue, themeValue, userValue } = React.useContext(Context);
-	const { locale, toggleLocale } = localeValue;
-	const { toggleTheme } = themeValue;
-	const { setAuthedUser } = userValue;
+	const { locale, toggleLocale, toggleTheme, setAuthedUser } = React.useContext(Context);
 
 	const [scrollDirection, setScrollDirection] = React.useState("show");
 
@@ -51,7 +48,7 @@ const Header = (props) => {
 				<input
 					className="input"
 					type="text"
-					placeholder="Search notes..."
+					placeholder={locale === "en" ? "Search Notes..." : "Cari Catatan..."}
 					value={props.keyword}
 					onChange={(e) => props.keywordChange(e.target.value)}
 				/>

@@ -7,15 +7,29 @@ import RegisterInput from "../components/RegisterInput";
 import ToggleTheme from "../components/ToggleTheme";
 
 const RegisterPage = () => {
-	const { localeValue, themeValue } = React.useContext(Context);
-	const { locale } = localeValue;
-	const { toggleTheme } = themeValue;
+	const navigate = useNavigate();
+	const { locale, toggleTheme } = React.useContext(Context);
 
 	const [name, nameHandler] = useInput("");
 	const [email, emailHandler] = useInput("");
 	const [password, passwordHandler] = useInput("");
 	const [confirmPassword, confirmPasswordHandler] = useInput("");
-	const navigate = useNavigate();
+
+	const greeting = {
+		en: {
+			header: "Hello, Friend!",
+			subheader: "Enter your personal details and start journey with us.",
+			ask: "Have an account?",
+			button: "Login",
+		},
+
+		id: {
+			header: "Halo, Teman!",
+			subheader: "Masukkan data diri anda dan mulai menjelajah bersama kami.",
+			ask: "Tidak memiliki akun?",
+			button: "Masuk",
+		},
+	};
 
 	const registerHandler = async (e) => {
 		e.preventDefault();
@@ -33,13 +47,11 @@ const RegisterPage = () => {
 	return (
 		<div className="RegisterPage">
 			<div className="register col-left">
-				<h1 className="title">Hello, Friend!</h1>
-				<p className="subtitle">
-					Enter your personal details and start journey with us.
-				</p>
-				<p className="ask">Have an account?</p>
+				<h1 className="title">{greeting[locale].header}</h1>
+				<p className="subtitle">{greeting[locale].subheader}</p>
+				<p className="ask">{greeting[locale].ask}</p>
 				<Link to="/" className="welcome-btn">
-					Login
+					{greeting[locale].button}
 				</Link>
 			</div>
 

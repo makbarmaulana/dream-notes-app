@@ -4,12 +4,22 @@ import { Context } from "../context/Context";
 import Button from "./Button";
 
 const RegisterInput = (props) => {
-	const { localeValue } = React.useContext(Context);
-	const { locale } = localeValue;
+	const { locale } = React.useContext(Context);
+
+	const register = {
+		en: {
+			header: "Create an account",
+			button: "Signup",
+		},
+		id: {
+			header: "Buat akun baru",
+			button: "Daftar",
+		}
+	}
 
 	return (
 		<div className="RegisterInput">
-			<h1 className="title">Create an account</h1>
+			<h1 className="title">{register[locale].header}</h1>
 			<form className="form">
 				<div className="input-box">
 					<IoPersonOutline className="username-icon" />
@@ -54,7 +64,7 @@ const RegisterInput = (props) => {
 				<Button
 					onClick={props.onRegister}
 					className="btn-register"
-					label="Signup"
+					label={register[locale].button}
 				/>
 			</form>
 		</div>

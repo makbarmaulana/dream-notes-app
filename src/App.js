@@ -16,7 +16,6 @@ const App = () => {
 	React.useEffect(() => {
 		const fetchAuthedUser = async () => {
 			const { data } = await getUserLogged();
-
 			setAuthedUser(data);
 			setInitializing(false);
 		};
@@ -32,8 +31,8 @@ const App = () => {
 
 	const setDataUser = async ({ accessToken }) => {
 		putAccessToken(accessToken);
+		
 		const { data } = await getUserLogged();
-
 		setAuthedUser(data);
 	};
 
@@ -45,11 +44,14 @@ const App = () => {
 		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
 	};
 
-	const contextValue = React.useMemo(() =>
-		({
-			localeValue: { locale, toggleLocale },
-			themeValue: { theme, toggleTheme },
-			userValue: { authedUser, setAuthedUser },
+	const contextValue = React.useMemo(
+		() => ({
+			locale,
+			toggleLocale,
+			theme,
+			toggleTheme,
+			authedUser,
+			setAuthedUser,
 		}),
 
 		[locale, theme, authedUser]

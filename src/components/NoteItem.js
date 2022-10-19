@@ -5,8 +5,7 @@ import { RiInboxArchiveFill, RiInboxUnarchiveFill, RiDeleteBin2Fill } from "reac
 import Button from "./Button";
 
 const NoteItem = (props) => {
-	const {localeValue} = React.useContext(Context)
-	const {locale} = localeValue
+	const {locale} = React.useContext(Context)
 	
 	return (
 		<li className="NoteItem">
