@@ -57,7 +57,7 @@ const Header = (props) => {
 				<Button
 					className="toggle-lang"
 					onClick={toggleLocale}
-					label={locale === "id" ? "EN" : "ID"}
+					label={locale === "id" ? "en" : "id"}
 				/>
 				<Button
 					className="btn-logout"

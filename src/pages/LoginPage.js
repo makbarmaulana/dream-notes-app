@@ -18,10 +18,9 @@ const LoginPage = (props) => {
 			header: "Welcome Back!",
 			subheader:
 				"to keep connected with us, please login with your personal info.",
-			ask: "Don't have an acoount?",
+			ask: "Don't have an account?",
 			button: "Register",
 		},
-
 		id: {
 			header: "Selamat Datang!",
 			subheader:

@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ROUTE_PROPS } from "./utils/route-properties";
 import { getUserLogged, putAccessToken } from "./utils/network-data";
 import { Context } from "./context/Context";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Sidebar from "./components/Sidebar";
@@ -10,8 +11,8 @@ import Sidebar from "./components/Sidebar";
 const App = () => {
 	const [authedUser, setAuthedUser] = React.useState(null);
 	const [initializing, setInitializing] = React.useState(true);
-	const [locale, setLocale] = React.useState("en");
-	const [theme, setTheme] = React.useState("light");
+	const [locale, setLocale] = useLocalStorage("locale", "en");
+	const [theme, setTheme] = useLocalStorage("theme", "dark");
 
 	React.useEffect(() => {
 		const fetchAuthedUser = async () => {
@@ -31,18 +32,18 @@ const App = () => {
 
 	const setDataUser = async ({ accessToken }) => {
 		putAccessToken(accessToken);
-		
+
 		const { data } = await getUserLogged();
 		setAuthedUser(data);
 	};
 
-	const toggleLocale = () => {
+	const toggleLocale = React.useCallback(() => {
 		setLocale((prevLocale) => (prevLocale === "en" ? "id" : "en"));
-	};
+	}, [setLocale]);
 
-	const toggleTheme = () => {
+	const toggleTheme = React.useCallback(() => {
 		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-	};
+	}, [setTheme]);
 
 	const contextValue = React.useMemo(
 		() => ({
@@ -54,7 +55,7 @@ const App = () => {
 			setAuthedUser,
 		}),
 
-		[locale, theme, authedUser]
+		[locale, toggleLocale, theme, toggleTheme, authedUser]
 	);
 
 	if (initializing) {
