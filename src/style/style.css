@@ -92,6 +92,16 @@ h3 {
   font-weight: 400;
 }
 
+@keyframes scaleUp {
+  0% {
+      transform: scale(.5);
+  }
+
+  100% {
+      transform: scale(1);
+  }
+}
+
 .input {
   background-color: #F2F2F2;
   outline: none;
@@ -208,6 +218,7 @@ h3 {
 /* --- AUTH PAGE --- */
 
 .App .nonauth {
+  position: relative;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -636,6 +647,7 @@ h3 {
 }
 
 .NoteList {
+  animation: scaleUp .25s ease forwards;
   padding: 0 25px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -761,4 +773,76 @@ h3 {
 .AddInputNote .add-body {
   height: 250px;
   font-size: 16px;
+}
+
+/* --- PAGE NOT FOUND --- */
+
+.PageNotFound {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  animation: scaleUp .25s ease forwards;
+  background-color: var(--w-db2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PageNotFound .content {
+  margin-left: var(--sidebar-width);
+  min-width: 400px;
+  width: 750px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.PageNotFound .img-box {
+  display: flex;
+  place-items: center;
+  width: 280px;
+  margin-top: -30px;
+}
+
+.PageNotFound .img-box svg {
+  width: 100%;
+  object-fit: cover;
+  fill: var(--fc-theme);
+}
+
+.PageNotFound .alert-message {
+  width: 100%;
+  height: 100%;
+  color: var(--fc-theme);
+}
+
+.PageNotFound .alert-message h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.PageNotFound .alert-message h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.PageNotFound .alert-message p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.PageNotFound .BackToHome {
+  margin-top: 25px;
+  display: flex;
+  width: max-content;
+  padding: 4px 18px;
+  border-radius: 25px;
+  background: var(--dark-blue-3);
+  color: var(--white);
+  transition: var(--transition-1);
+}
+
+.PageNotFound .BackToHome:hover {
+  background: var(--dark-blue-1);
 }

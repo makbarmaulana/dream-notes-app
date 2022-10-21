@@ -1,6 +1,7 @@
-import AddPage from "../pages/AddPage";
 import HomePage from "../pages/HomePage";
 import ArchivePage from "../pages/ArchivePage";
+import AddPage from "../pages/AddPage";
+import PageNotFound from "../pages/PageNotFound"
 
 export const ROUTE_PROPS = [
 	{
@@ -14,5 +15,9 @@ export const ROUTE_PROPS = [
 	{
 		path: "/add",
 		element: <AddPage />,
+	},
+	{
+		path: "*",
+		element: <PageNotFound />,
 	},
 ];
