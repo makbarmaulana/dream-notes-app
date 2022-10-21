@@ -103,8 +103,13 @@ h3 {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loader {
@@ -387,7 +392,8 @@ h3 {
 
 .HomePage,
 .AddPage,
-.ArchivePage {
+.ArchivePage,
+.DetailPage {
   width: 100%;
   height: 100%;
   grid-column-start: 2;
@@ -718,6 +724,39 @@ h3 {
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* --- DETAIL PAGE --- */
+
+.NoteDetail {
+  position: relative;
+  color: var(--fc-theme);
+  width: 70%;
+  min-width: 500px;
+  min-height: 500px;
+  margin: 50px auto;
+  padding: 32px;
+  color: var(--fc-theme);
+  background-color: var(--w-db3);
+  box-shadow: var(--box-shadow-1);
+}
+
+.note-detail-content .createdAt {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.note-detail-content .title {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.note-detail-content .body {
+  font-size: 20px;
+  font-weight: 300;
 }
 
 .buttons {

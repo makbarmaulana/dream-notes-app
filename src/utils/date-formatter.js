@@ -1,4 +1,9 @@
-export const showFormattedDate = (date, locale) => {
+import React from "react";
+import { Context } from "../context/Context";
+
+export const ShowFormattedDate = (date) => {
+	const { locale } = React.useContext(Context);
+
 	const options = {
 		year: "numeric",
 		month: "short",

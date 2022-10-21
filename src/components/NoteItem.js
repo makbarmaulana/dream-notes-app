@@ -1,19 +1,19 @@
 import React from "react";
-import { Context } from "../context/Context";
-import { showFormattedDate } from "../utils/date-formatter";
+import { ShowFormattedDate } from "../utils/date-formatter";
 import { RiInboxArchiveFill, RiInboxUnarchiveFill, RiDeleteBin2Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import Button from "./Action/Button";
 
 const NoteItem = (props) => {
-	const {locale} = React.useContext(Context)
-	
 	return (
 		<li className="NoteItem">
-			<div className="note-content">
-				<p className="createdAt">{showFormattedDate(props.createdAt, locale)}</p>
-				<h3 className="title">{props.title}</h3>
-				<p className="body">{props.body}</p>
-			</div>
+			<Link to={`/detail${props.id}`}>
+				<div className="note-content">
+					<p className="createdAt">{ShowFormattedDate(props.createdAt)}</p>
+					<h3 className="title">{props.title}</h3>
+					<p className="body">{props.body}</p>
+				</div>
+			</Link>
 			<div className="buttons">
 				<Button
 					className="btn-archive"
