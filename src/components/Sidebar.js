@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Context } from "../context/Context";
 import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill, BsJustify, BsArrowRight } from "react-icons/bs";
 import avatar from "../assets/avatar.png";
-import Button from "./Button"
+import Button from "./Action/Button"
 
 const Sidebar = () => {
 	const { locale, authedUser } = React.useContext(Context);

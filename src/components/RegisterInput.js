@@ -1,7 +1,7 @@
 import React from "react";
 import { IoPersonOutline, IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 import { Context } from "../context/Context";
-import Button from "./Button";
+import Button from "./Action/Button";
 
 const RegisterInput = (props) => {
 	const { locale } = React.useContext(Context);

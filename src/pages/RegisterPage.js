@@ -4,11 +4,12 @@ import { useInput } from "../hooks/useInput";
 import { register } from "../utils/network-data";
 import { Context } from "../context/Context";
 import RegisterInput from "../components/RegisterInput";
-import ToggleTheme from "../components/ToggleTheme";
+import ToggleLang from "../components/Action/ToggleLang";
+import ToggleTheme from "../components/Action/ToggleTheme";
 
 const RegisterPage = () => {
 	const navigate = useNavigate();
-	const { locale, toggleTheme } = React.useContext(Context);
+	const { locale } = React.useContext(Context);
 
 	const [name, nameHandler] = useInput("");
 	const [email, emailHandler] = useInput("");
@@ -56,7 +57,10 @@ const RegisterPage = () => {
 			</div>
 
 			<div className="register col-right">
-				<ToggleTheme onClick={toggleTheme} />
+				<div className="toggle">
+					<ToggleLang />
+					<ToggleTheme />
+				</div>
 				<RegisterInput
 					onRegister={registerHandler}
 					name={name}

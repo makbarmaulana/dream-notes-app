@@ -2,7 +2,7 @@ import React from "react";
 import { Context } from "../context/Context";
 import { showFormattedDate } from "../utils/date-formatter";
 import { RiInboxArchiveFill, RiInboxUnarchiveFill, RiDeleteBin2Fill } from "react-icons/ri";
-import Button from "./Button";
+import Button from "./Action/Button";
 
 const NoteItem = (props) => {
 	const {locale} = React.useContext(Context)

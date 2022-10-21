@@ -4,12 +4,13 @@ import { BsSearch } from "react-icons/bs";
 import { putAccessToken } from "../utils/network-data";
 import { Context } from "../context/Context";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
-import ToggleTheme from "./ToggleTheme";
+import Button from "./Action/Button";
+import ToggleTheme from "./Action/ToggleTheme";
+import ToggleLang from "./Action/ToggleLang";
 
 const Header = (props) => {
 	const navigate = useNavigate();
-	const { locale, toggleLocale, toggleTheme, setAuthedUser } = React.useContext(Context);
+	const { locale, setAuthedUser } = React.useContext(Context);
 
 	const [scrollDirection, setScrollDirection] = React.useState("show");
 
@@ -54,17 +55,13 @@ const Header = (props) => {
 				/>
 			</div>
 			<div className="header-toggle">
-				<Button
-					className="toggle-lang"
-					onClick={toggleLocale}
-					label={locale === "id" ? "en" : "id"}
-				/>
+				<ToggleLang />
 				<Button
 					className="btn-logout"
 					onClick={onLogoutHandler}
 					label={<RiLogoutBoxRLine />}
 				/>
-				<ToggleTheme onClick={toggleTheme} />
+				<ToggleTheme />
 			</div>
 		</header>
 	);

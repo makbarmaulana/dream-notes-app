@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
-import Button from "./Button";
+import Button from "./Action/Button";
 import { Context } from "../context/Context";
 
 const LoginInput = (props) => {

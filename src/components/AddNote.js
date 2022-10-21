@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./Action/Button";
 import { Context } from "../context/Context";
 
 const AddNote = (props) => {

@@ -4,11 +4,12 @@ import { login } from "../utils/network-data";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/Context";
 import LoginInput from "../components/LoginInput";
-import ToggleTheme from "../components/ToggleTheme";
+import ToggleLang from "../components/Action/ToggleLang";
+import ToggleTheme from "../components/Action/ToggleTheme";
 
 const LoginPage = (props) => {
 	const navigate = useNavigate();
-	const { locale, toggleTheme } = React.useContext(Context);
+	const { locale } = React.useContext(Context);
 
 	const [email, emailHandler] = useInput();
 	const [password, passwordHandler] = useInput("");
@@ -52,7 +53,10 @@ const LoginPage = (props) => {
 			</div>
 
 			<div className="login col-right">
-				<ToggleTheme onClick={toggleTheme} />
+				<div className="toggle">
+					<ToggleLang />
+					<ToggleTheme />
+				</div>
 				<LoginInput
 					onLogin={loginHandler}
 					email={email}

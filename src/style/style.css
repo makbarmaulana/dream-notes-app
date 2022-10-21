@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* --- BASE STYLE --- */
+
 :root {
   --ff-poppins: 'Poppins', sans-serif;
   --header-height: 50px;
@@ -106,19 +108,49 @@ h3 {
   background-color: var(--white);
 }
 
-.LoginPage .ToggleTheme {
+.toggle {
   position: absolute;
   top: 14px;
   right: 14px;
+  display: flex;
+  gap: 14px;
 }
 
-.RegisterPage .ToggleTheme {
+.RegisterPage .toggle {
   position: absolute;
   top: 14px;
   left: 14px;
+  right: unset;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 14px;
 }
 
-.toggle-box {
+.toggle-lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 30px;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: var(--w-db1);
+}
+
+[data-theme='dark'] .toggle-lang-btn {
+  background-color: var(--w-db1);
+  color: var(--white);
+}
+
+[data-theme='dark'] .toggle-lang-btn:hover {
+  background-color: var(--dark-blue-1);
+}
+
+.ToggleTheme input {
+  display: none;
+}
+
+.toggle-theme-btn {
   width: 60px;
   height: 30px;
   position: relative;
@@ -133,15 +165,11 @@ h3 {
   user-select: none;
 }
 
-.ToggleTheme input {
-  display: none;
-}
-
-[data-theme='dark'] .toggle-box {
+[data-theme='dark'] .toggle-theme-btn {
   background: var(--white);
 }
 
-.toggle-box::before {
+.toggle-theme-btn::before {
   position: absolute;
   left: 7%;
   content: "";
@@ -153,31 +181,31 @@ h3 {
   transition: 0.4s ease;
 }
 
-.toggle-box:active::before {
+.toggle-theme-btn:active::before {
   width: 50%;
 }
 
-[data-theme='dark'] .toggle-box::before {
+[data-theme='dark'] .toggle-theme-btn::before {
   left: 93%;
   transform: translateX(-100%);
   background: var(--blue);
 }
 
-.toggle-box>* {
+.toggle-theme-btn>* {
   width: 20px;
   height: 20px;
 }
 
-.toggle-box .sun {
+.toggle-theme-btn .sun {
   fill: var(--white);
 }
 
-.toggle-box .moon {
+.toggle-theme-btn .moon {
   fill: var(--dark-blue-3);
 }
 
 
-/* AUTH PAGE */
+/* --- AUTH PAGE --- */
 
 .App .nonauth {
   width: 100vw;
@@ -319,7 +347,7 @@ h3 {
   border: 1px solid transparent;
 }
 
-/* PAGE */
+/* --- APP PAGE --- */
 
 .App .authed {
   min-width: 500px;
@@ -339,6 +367,8 @@ h3 {
   grid-column-start: 2;
   transition: .3s ease;
 }
+
+/* --- HEADER --- */
 
 .Header {
   width: calc(100% - var(--sidebar-width));
@@ -425,26 +455,6 @@ h3 {
   user-select: none;
 }
 
-.toggle-lang {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  text-transform: uppercase;
-  background-color: var(--w-db1);
-}
-
-[data-theme='dark'] .toggle-lang {
-  background-color: var(--w-db2);
-  color: var(--white);
-}
-
-[data-theme='dark'] .toggle-lang:hover {
-  background-color: var(--dark-blue-1);
-}
-
 .btn-logout {
   display: flex;
   align-items: center;
@@ -469,6 +479,8 @@ h3 {
   justify-content: center;
   transform: scale(95%);
 }
+
+/* --- SIDEBAR --- */
 
 .Sidebar {
   position: fixed;
@@ -615,6 +627,8 @@ h3 {
   display: none;
 }
 
+/* --- MAIN PAGE --- */
+
 .status-notes {
   margin: 80px 0 30px;
   text-align: center;
@@ -680,7 +694,7 @@ h3 {
   font-size: 24px;
 }
 
-.btn-archive > svg {
+.btn-archive>svg {
   font-size: 26px;
   margin: 0;
 }
@@ -698,7 +712,7 @@ h3 {
   font-size: 24px;
 }
 
-/* AddPage */
+/* --- ADD PAGE --- */
 
 .AddPage {
   display: grid;
