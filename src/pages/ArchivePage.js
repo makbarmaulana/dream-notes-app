@@ -9,7 +9,7 @@ const ArchivePage = () => {
 
 	const [notes, setNotes] = React.useState([]);
 	const [keyword, setKeyword] = React.useState("");
-	const [loading, setLoading] = React.useState(false);
+	const [loading, setLoading] = React.useState(true);
 
 	const fetchNotes = () => {
 		getArchivedNotes().then(({ data }) => {
@@ -19,7 +19,6 @@ const ArchivePage = () => {
 	};
 
 	React.useEffect(() => {
-		setLoading(true);
 		fetchNotes();
 	}, []);
 
@@ -36,7 +35,7 @@ const ArchivePage = () => {
 		if (window.confirm("unarchive?")) {
 			unarchiveNote(id).then(() => {
 				fetchNotes();
-				alert("note unarchived!")
+				alert("note unarchived!");
 			});
 		}
 	};
@@ -55,16 +54,15 @@ const ArchivePage = () => {
 			<h1 className="status-notes">
 				{locale === "en" ? "Archive Notes" : "Arsip Catatan"}
 			</h1>
+
 			{loading ? (
-				<p style={{ display: "flex", placeContent: "center" }}>
-					Fetching Data...
-				</p>
+				<div className="loader" />
 			) : notes.length < 1 ? (
-				<p style={{ display: "flex", placeContent: "center" }}>
-					Archive Notes Empty
+				<p className="notes-empty">
+					Archive Notes Empty!
 				</p>
 			) : filteredNotes.length < 1 ? (
-				<p style={{ display: "flex", placeContent: "center" }}>
+				<p className="notes-empty">
 					No Notes Found!
 				</p>
 			) : (

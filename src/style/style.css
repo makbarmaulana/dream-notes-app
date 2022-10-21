@@ -94,12 +94,27 @@ h3 {
 
 @keyframes scaleUp {
   0% {
-      transform: scale(.5);
+    transform: scale(.5);
   }
 
   100% {
-      transform: scale(1);
+    transform: scale(1);
   }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader {
+  margin: 0 auto;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--purple);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
 }
 
 .input {
@@ -661,6 +676,14 @@ h3 {
   padding: 8px;
   box-shadow: var(--box-shadow-1);
   background-color: var(--w-db3);
+}
+
+.notes-empty {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--fc-theme);
 }
 
 .note-content {
