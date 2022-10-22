@@ -1,11 +1,22 @@
 import React from "react";
 import { ShowFormattedDate } from "../utils/date-formatter";
-import { useParams } from "react-router-dom";
-import { getNote } from "../utils/network-data";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+	archiveNote,
+	deleteNote,
+	getNote,
+	unarchiveNote,
+} from "../utils/network-data";
+import {
+	RiInboxArchiveFill,
+	RiInboxUnarchiveFill,
+	RiDeleteBin2Fill,
+} from "react-icons/ri";
 import Button from "../components/Action/Button";
 
 const DetailPage = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const [note, setNote] = React.useState(null);
 	const [loading, setLoading] = React.useState(true);
 
@@ -20,6 +31,33 @@ const DetailPage = () => {
 		});
 	};
 
+	const deleteHandler = (id) => {
+		if (window.confirm("delete?")) {
+			deleteNote(id).then(() => {
+				alert("delete success");
+				navigate("/home");
+			});
+		}
+	};
+	
+	const archiveHandler = (id) => {
+		if (window.confirm("archive?")) {
+			archiveNote(id).then(() => {
+				alert("note archived!");
+				navigate("/home");
+			});
+		}
+	};
+	
+	const unArchiveHandler = (id) => {
+		if (window.confirm("un-archive?")) {
+			unarchiveNote(id).then(() => {
+				alert("note un-archived!");
+				navigate("/home");
+			});
+		}
+	};
+
 	return (
 		<div className="DetailPage">
 			{loading ? (
@@ -32,8 +70,24 @@ const DetailPage = () => {
 						<p className="body">{note?.body}</p>
 					</div>
 					<div className="buttons">
-						<Button className="btn-archive" />
-						<Button className="btn-delete" />
+						{!note?.archived ? (
+							<Button
+								className="btn-archive"
+								onClick={() => archiveHandler(id)}
+								label={<RiInboxArchiveFill className="archived-icon" />}
+							/>
+						) : (
+							<Button
+								className="btn-archive"
+								onClick={() => unArchiveHandler(id)}
+								label={<RiInboxUnarchiveFill className="unarchived-icon" />}
+							/>
+						)}
+						<Button
+							className="btn-delete"
+							onClick={() => deleteHandler(id)}
+							label={<RiDeleteBin2Fill />}
+						/>
 					</div>
 				</div>
 			)}

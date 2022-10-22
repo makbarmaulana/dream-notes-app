@@ -774,11 +774,11 @@ h3 {
   margin: 0;
 }
 
-.btn-archive .archive-icon {
+.btn-archive .archived-icon {
   color: rgb(27, 158, 27);
 }
 
-.btn-archive .unarchive-icon {
+.btn-archive .unarchived-icon {
   color: rgb(230, 161, 34);
 }
 

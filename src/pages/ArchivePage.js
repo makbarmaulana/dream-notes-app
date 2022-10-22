@@ -32,10 +32,10 @@ const ArchivePage = () => {
 	};
 
 	const archiveHandler = (id) => {
-		if (window.confirm("unarchive?")) {
+		if (window.confirm("un-archive?")) {
 			unarchiveNote(id).then(() => {
 				fetchNotes();
-				alert("note unarchived!");
+				alert("note un-archived!");
 			});
 		}
 	};

@@ -7,7 +7,7 @@ import Button from "./Action/Button";
 const NoteItem = (props) => {
 	return (
 		<li className="NoteItem">
-			<Link to={`/detail${props.id}`}>
+			<Link to={`/detail/${props.id}`}>
 				<div className="note-content">
 					<p className="createdAt">{ShowFormattedDate(props.createdAt)}</p>
 					<h3 className="title">{props.title}</h3>
@@ -18,7 +18,7 @@ const NoteItem = (props) => {
 				<Button
 					className="btn-archive"
 					onClick={() => props.onArchive(props.id)}
-					label={props.archived ? <RiInboxUnarchiveFill className="unarchive-icon" /> : <RiInboxArchiveFill className="archive-icon"/>}
+					label={props.archived ? <RiInboxUnarchiveFill className="unarchived-icon" /> : <RiInboxArchiveFill className="archived-icon"/>}
 				/>
 				<Button
 					className="btn-delete"

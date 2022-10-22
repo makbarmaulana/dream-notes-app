@@ -14,7 +14,7 @@ export const ROUTE_PROPS = [
 		element: <ArchivePage />,
 	},
 	{
-		path: "/detail:id",
+		path: "/detail/:id",
 		element: <DetailPage />,
 	},
 	{
