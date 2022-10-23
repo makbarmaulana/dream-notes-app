@@ -1,44 +1,16 @@
 import React from "react";
 import Header from "../components/Header";
 import NoteList from "../components/NoteList";
-import { archiveNote, deleteNote, getActiveNotes } from "../utils/network-data";
 import { Context } from "../context/Context";
+import { useLocation } from "react-router-dom";
+import { useFetchAPI } from "../hooks/useFetchAPI";
 
 const HomePage = () => {
+	const { pathname } = useLocation();
 	const { locale } = React.useContext(Context);
-
-	const [notes, setNotes] = React.useState([]);
+	const { notes, loading, deleteHandler, archiveHandler } =
+		useFetchAPI(pathname);
 	const [keyword, setKeyword] = React.useState("");
-	const [loading, setLoading] = React.useState(true);
-
-	const fetchNotes = () => {
-		getActiveNotes().then(({ data }) => {
-			setNotes(data);
-			setLoading(false);
-		});
-	};
-
-	React.useEffect(() => {
-		fetchNotes();
-	}, []);
-
-	const deleteHandler = (id) => {
-		if (window.confirm("delete?")) {
-			deleteNote(id).then(() => {
-				fetchNotes();
-				alert("delete success");
-			});
-		}
-	};
-
-	const archiveHandler = (id) => {
-		if (window.confirm("archive?")) {
-			archiveNote(id).then(() => {
-				fetchNotes();
-				alert("note archived!");
-			});
-		}
-	};
 
 	const keywordHandler = (keyword) => {
 		setKeyword(keyword);
@@ -58,13 +30,9 @@ const HomePage = () => {
 			{loading ? (
 				<div className="loader" />
 			) : notes.length < 1 ? (
-				<p className="notes-empty">
-					Active Notes Empty!
-				</p>
+				<p className="notes-empty">Active Notes Empty!</p>
 			) : filteredNotes.length < 1 ? (
-				<p className="notes-empty">
-					No Notes Found!
-				</p>
+				<p className="notes-empty">No Notes Found!</p>
 			) : (
 				<NoteList
 					notes={filteredNotes}

@@ -1,62 +1,23 @@
 import React from "react";
 import { ShowFormattedDate } from "../utils/date-formatter";
-import { useParams, useNavigate } from "react-router-dom";
-import {
-	archiveNote,
-	deleteNote,
-	getNote,
-	unarchiveNote,
-} from "../utils/network-data";
+import { useParams, useLocation } from "react-router-dom";
 import {
 	RiInboxArchiveFill,
 	RiInboxUnarchiveFill,
 	RiDeleteBin2Fill,
 } from "react-icons/ri";
 import Button from "../components/Action/Button";
+import { Context } from "../context/Context";
+import { useFetchAPI } from "../hooks/useFetchAPI";
+import { useNavigate } from "react-router-dom";
 
 const DetailPage = () => {
-	const { id } = useParams();
+	const { locale } = React.useContext(Context);
 	const navigate = useNavigate();
-	const [note, setNote] = React.useState(null);
-	const [loading, setLoading] = React.useState(true);
-
-	React.useEffect(() => {
-		getNoteData(id);
-	}, [id]);
-
-	const getNoteData = async (id) => {
-		getNote(id).then(({ data }) => {
-			setNote(data);
-			setLoading(false);
-		});
-	};
-
-	const deleteHandler = (id) => {
-		if (window.confirm("delete?")) {
-			deleteNote(id).then(() => {
-				alert("delete success");
-				navigate("/home");
-			});
-		}
-	};
-	
-	const archiveHandler = (id) => {
-		if (window.confirm("archive?")) {
-			archiveNote(id).then(() => {
-				alert("note archived!");
-				navigate("/home");
-			});
-		}
-	};
-	
-	const unArchiveHandler = (id) => {
-		if (window.confirm("un-archive?")) {
-			unarchiveNote(id).then(() => {
-				alert("note un-archived!");
-				navigate("/home");
-			});
-		}
-	};
+	const { id } = useParams();
+	const { pathname } = useLocation();
+	const { notes, loading, deleteHandler, archiveHandler, unArchiveHandler } =
+		useFetchAPI(pathname, id);
 
 	return (
 		<div className="DetailPage">
@@ -65,21 +26,29 @@ const DetailPage = () => {
 			) : (
 				<div className="NoteDetail">
 					<div className="note-detail-content">
-						<p className="createdAt">{ShowFormattedDate(note?.createdAt)}</p>
-						<h3 className="title">{note?.title}</h3>
-						<p className="body">{note?.body}</p>
+						<p className="createdAt">
+							{ShowFormattedDate(notes?.createdAt, locale)}
+						</p>
+						<h3 className="title">{notes?.title}</h3>
+						<p className="body">{notes?.body}</p>
 					</div>
 					<div className="buttons">
-						{!note?.archived ? (
+						{!notes?.archived ? (
 							<Button
 								className="btn-archive"
-								onClick={() => archiveHandler(id)}
+								onClick={() => {
+									archiveHandler(id);
+									navigate("/archive");
+								}}
 								label={<RiInboxArchiveFill className="archived-icon" />}
 							/>
 						) : (
 							<Button
 								className="btn-archive"
-								onClick={() => unArchiveHandler(id)}
+								onClick={() => {
+									unArchiveHandler(id);
+									navigate("/home");
+								}}
 								label={<RiInboxUnarchiveFill className="unarchived-icon" />}
 							/>
 						)}
