@@ -44,7 +44,9 @@ export const useFetchNotes = (pathname, id) => {
 		if (window.confirm("delete note?")) {
 			deleteNote(id).then(() => {
 				alert("note deleted!");
-				navigate(notes?.archived ? "/archive" : "/home");
+				pathname === `/detail/${id}`
+					? navigate(notes?.archived ? "/archive" : "/home")
+					: fetchNotes();
 			});
 		}
 	};
