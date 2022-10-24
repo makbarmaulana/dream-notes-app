@@ -112,9 +112,9 @@ h3 {
   }
 }
 
-@keyframes rightToLeft {
+@keyframes slide {
   0% {
-    transform: translateX(150%);
+    transform: translateX(125%);
   }
 
   100% {
@@ -360,6 +360,7 @@ h3 {
   margin-top: 14px;
   color: var(--blue);
   border: 1px solid currentColor;
+  background-color: var(--white);
 }
 
 :is(.btn-login, .btn-register, .btn-addnote):hover {
@@ -580,10 +581,7 @@ h3 {
   font-size: 14px;
   font-weight: 400;
   color: var(--white);
-  animation-name: rightToLeft;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: slide 10s linear infinite;
 }
 
 .user-info .username {
