@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Context } from "../context/context";
-import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill, BsJustify, BsArrowRight } from "react-icons/bs";
+import { BsJustify, BsArrowRight } from "react-icons/bs";
+import { navigation } from "../utils/navigation_properties";
 import avatar from "../assets/avatar.png";
 import Button from "./Action/Button";
 
@@ -18,33 +19,6 @@ const Sidebar = () => {
 	const toggleSidebarHandler = () => {
 		setToggleSidebar((prevStatus) => (prevStatus === "hide" ? "show" : "hide"));
 	};
-
-	const navigation = [
-		{
-			path: "/home",
-			icon: <BsHouseDoorFill />,
-			title: {
-				en: "Home",
-				id: "Beranda",
-			},
-		},
-		{
-			path: "/archive",
-			icon: <BsFillArchiveFill />,
-			title: {
-				en: "Archive",
-				id: "Arsip",
-			},
-		},
-		{
-			path: "/add",
-			icon: <BsFillPlusSquareFill />,
-			title: {
-				en: "Add Note",
-				id: "Tambah Catatan",
-			},
-		},
-	];
 
 	return (
 		<div className={`Sidebar ${toggleSidebar}`}>
@@ -74,9 +48,7 @@ const Sidebar = () => {
 						}
 					>
 						<i className="nav-icon">{item.icon}</i>
-						<p className="nav-title">
-							{locale === "en" ? item.title.en : item.title.id}
-						</p>
+						<p className="nav-title">{item.title[locale]}</p>
 					</NavLink>
 				))}
 			</div>
