@@ -3,22 +3,20 @@ import { NavLink } from "react-router-dom";
 import { Context } from "../context/context";
 import { BsHouseDoorFill, BsFillArchiveFill, BsFillPlusSquareFill, BsJustify, BsArrowRight } from "react-icons/bs";
 import avatar from "../assets/avatar.png";
-import Button from "./Action/Button"
+import Button from "./Action/Button";
 
 const Sidebar = () => {
 	const { locale, authedUser } = React.useContext(Context);
-
 	const [toggleSidebar, setToggleSidebar] = React.useState("hide");
 
 	React.useEffect(() => {
-		toggleSidebar === "hide" 
-		? document.documentElement.style.setProperty("--sidebar-width", "50px") 
-		: document.documentElement.style.setProperty("--sidebar-width", "230px");
-		
+		toggleSidebar === "hide"
+			? document.documentElement.style.setProperty("--sidebar-width", "50px")
+			: document.documentElement.style.setProperty("--sidebar-width", "230px");
 	}, [toggleSidebar]);
 
 	const toggleSidebarHandler = () => {
-		setToggleSidebar((prevStatus) => prevStatus === "hide" ? "show" : "hide");
+		setToggleSidebar((prevStatus) => (prevStatus === "hide" ? "show" : "hide"));
 	};
 
 	const navigation = [
@@ -59,7 +57,11 @@ const Sidebar = () => {
 					<p className="username">{authedUser.name}</p>
 				</div>
 				<div className="sidebar-toggle">
-					<Button className="sidebar-btn" onClick={toggleSidebarHandler} label={toggleSidebar === "hide" ? <BsArrowRight /> : <BsJustify /> }/>
+					<Button
+						className="sidebar-btn"
+						onClick={toggleSidebarHandler}
+						label={toggleSidebar === "hide" ? <BsArrowRight /> : <BsJustify />}
+					/>
 				</div>
 			</div>
 			<div className="nav-menu">

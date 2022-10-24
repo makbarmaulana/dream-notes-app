@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useInput } from "../hooks/useInput";
 import { login } from "../utils/network_data";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +12,6 @@ import ToggleTheme from "../components/Action/ToggleTheme";
 const LoginPage = (props) => {
 	const navigate = useNavigate();
 	const { locale } = React.useContext(Context);
-
 	const [email, emailHandler] = useInput();
 	const [password, passwordHandler] = useInput("");
 
@@ -52,6 +52,10 @@ const LoginPage = (props) => {
 			</div>
 		</div>
 	);
+};
+
+LoginPage.propTypes = {
+	authed: PropTypes.func,
 };
 
 export default LoginPage;

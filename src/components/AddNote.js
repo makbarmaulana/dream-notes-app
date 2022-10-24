@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "./Action/Button";
 
 const AddNote = (props) => {
@@ -33,6 +34,16 @@ const AddNote = (props) => {
 			</form>
 		</div>
 	);
+};
+
+AddNote.propTypes = {
+	addPage: PropTypes.object,
+	locale: PropTypes.string,
+	title: PropTypes.string,
+	onTitleChange: PropTypes.func,
+	body: PropTypes.string,
+	onBodyChange: PropTypes.func,
+	onAddNote: PropTypes.func,
 };
 
 export default AddNote;

@@ -2,7 +2,7 @@ import HomePage from "../pages/HomePage";
 import ArchivePage from "../pages/ArchivePage";
 import DetailPage from "../pages/DetailPage";
 import AddPage from "../pages/AddPage";
-import PageNotFound from "../pages/PageNotFound"
+import PageNotFound from "../pages/PageNotFound";
 
 export const ROUTE_PROPS = [
 	{

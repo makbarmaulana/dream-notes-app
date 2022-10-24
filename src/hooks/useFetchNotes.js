@@ -1,7 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { archiveNote, deleteNote, getActiveNotes, getArchivedNotes, getNote, unarchiveNote } from "../utils/network_data";
+import { useNavigate } from "react-router-dom";
 
 export const useFetchNotes = (pathname, id) => {
+	const navigate = useNavigate();
 	const [notes, setNotes] = React.useState([]);
 	const [loading, setLoading] = React.useState(true);
 
@@ -38,13 +41,11 @@ export const useFetchNotes = (pathname, id) => {
 	}, [fetchNotes]);
 
 	const deleteHandler = (id) => {
-		if (window.confirm("delete?")) {
+		if (window.confirm("delete note?")) {
 			deleteNote(id).then(() => {
-				fetchNotes();
 				alert("note deleted!");
+				navigate(notes?.archived ? "/archive" : "/home");
 			});
-		} else {
-			window.confirm.abort();
 		}
 	};
 
@@ -54,8 +55,6 @@ export const useFetchNotes = (pathname, id) => {
 				fetchNotes();
 				alert("note archived!");
 			});
-		} else {
-			window.confirm.abort();
 		}
 	};
 
@@ -65,10 +64,13 @@ export const useFetchNotes = (pathname, id) => {
 				fetchNotes();
 				alert("note un-archived!");
 			});
-		} else {
-			window.confirm.abort();
 		}
 	};
 
 	return { notes, loading, deleteHandler, archiveHandler, unArchiveHandler };
+};
+
+useFetchNotes.propTypes = {
+	pathname: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 };

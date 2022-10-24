@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 import { loginPage } from "../utils/lang_properties";
 import Button from "./Action/Button";
@@ -38,6 +39,15 @@ const LoginInput = (props) => {
 			</form>
 		</div>
 	);
+};
+
+LoginInput.propTypes = {
+	locale: PropTypes.string.isRequired,
+	email: PropTypes.string.isRequired,
+	onEmailChange: PropTypes.func.isRequired,
+	password: PropTypes.string.isRequired,
+	onPasswordChange: PropTypes.func.isRequired,
+	onLogin: PropTypes.func.isRequired,
 };
 
 export default LoginInput;

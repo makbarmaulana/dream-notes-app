@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { IoPersonOutline, IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 import { registerPage } from "../utils/lang_properties";
 import Button from "./Action/Button";
@@ -58,6 +59,19 @@ const RegisterInput = (props) => {
 			</form>
 		</div>
 	);
+};
+
+RegisterInput.propTypes = {
+	locale: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	onNameChange: PropTypes.func.isRequired,
+	email: PropTypes.string.isRequired,
+	onEmailChange: PropTypes.func.isRequired,
+	password: PropTypes.string.isRequired,
+	onPasswordChange: PropTypes.func.isRequired,
+	confirmPassword: PropTypes.string.isRequired,
+	onConfirmPasswordChange: PropTypes.func.isRequired,
+	onRegister: PropTypes.func.isRequired,
 };
 
 export default RegisterInput;

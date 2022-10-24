@@ -7,8 +7,8 @@ import { addPage } from "../utils/lang_properties";
 import AddNote from "../components/AddNote";
 
 const AddPage = () => {
-	const { locale } = React.useContext(Context);
 	const navigate = useNavigate();
+	const { locale } = React.useContext(Context);
 	const [title, titleHandler] = useInput("");
 	const [body, bodyHandler] = useInput("");
 
@@ -19,7 +19,6 @@ const AddPage = () => {
 			alert(addPage[locale].alert);
 		} else {
 			const { error } = await addNote({ title, body });
-			console.log(title);
 			if (!error) {
 				navigate("/home");
 			}

@@ -11,7 +11,6 @@ import ToggleTheme from "../components/Action/ToggleTheme";
 const RegisterPage = () => {
 	const navigate = useNavigate();
 	const { locale } = React.useContext(Context);
-
 	const [name, nameHandler] = useInput("");
 	const [email, emailHandler] = useInput("");
 	const [password, passwordHandler] = useInput("");

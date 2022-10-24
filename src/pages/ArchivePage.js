@@ -9,7 +9,8 @@ import { useFetchNotes } from "../hooks/useFetchNotes";
 const ArchivePage = () => {
 	const { locale } = React.useContext(Context);
 	const { pathname } = useLocation();
-	const { notes, loading, deleteHandler, unArchiveHandler } = useFetchNotes(pathname);
+	const { notes, loading, deleteHandler, unArchiveHandler } =
+		useFetchNotes(pathname);
 	const [keyword, setKeyword] = React.useState("");
 
 	const keywordHandler = (keyword) => {
@@ -23,9 +24,7 @@ const ArchivePage = () => {
 	return (
 		<div className="HomePage">
 			<Header keyword={keyword} keywordChange={keywordHandler} />
-			<h1 className="status-notes">
-				{archivePage[locale].header}
-			</h1>
+			<h1 className="status-notes">{archivePage[locale].header}</h1>
 
 			{loading ? (
 				<div className="loader" />

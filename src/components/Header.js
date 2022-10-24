@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
 import { putAccessToken } from "../utils/network_data";
@@ -11,7 +12,6 @@ import ToggleLang from "./Action/ToggleLang";
 const Header = (props) => {
 	const navigate = useNavigate();
 	const { locale, setAuthedUser } = React.useContext(Context);
-
 	const [scrollDirection, setScrollDirection] = React.useState("show");
 
 	React.useEffect(() => {
@@ -21,7 +21,10 @@ const Header = (props) => {
 			const currentScrollY = window.pageYOffset;
 			const direction = currentScrollY > lastScrollY ? "hide" : "show";
 
-			if (direction !== scrollDirection && (currentScrollY - lastScrollY > 10 || currentScrollY - lastScrollY < -10)
+			if (
+				direction !== scrollDirection &&
+				(currentScrollY - lastScrollY > 10 ||
+					currentScrollY - lastScrollY < -10)
 			) {
 				setScrollDirection(direction);
 			}
@@ -30,9 +33,8 @@ const Header = (props) => {
 		};
 
 		window.addEventListener("scroll", updateScrollDirection);
-
 		return () => window.removeEventListener("scroll", updateScrollDirection);
-
+		
 	}, [scrollDirection]);
 
 	const onLogoutHandler = (e) => {
@@ -65,6 +67,11 @@ const Header = (props) => {
 			</div>
 		</header>
 	);
+};
+
+Header.propTypes = {
+	keyword: PropTypes.string,
+	keywordChange: PropTypes.func,
 };
 
 export default Header;

@@ -68,7 +68,7 @@ const App = () => {
 				{authedUser === null ? (
 					<div className="nonauth">
 						<Routes>
-							<Route path="/*" element={<LoginPage authed={setDataUser} />} />
+							<Route path="*" element={<LoginPage authed={setDataUser} />} />
 							<Route path="/register" element={<RegisterPage />} />
 						</Routes>
 					</div>

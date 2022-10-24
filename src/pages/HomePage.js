@@ -24,9 +24,7 @@ const HomePage = () => {
 	return (
 		<div className="HomePage">
 			<Header keyword={keyword} keywordChange={keywordHandler} />
-			<h1 className="status-notes">
-				{homePage[locale].header}
-			</h1>
+			<h1 className="status-notes">{homePage[locale].header}</h1>
 
 			{loading ? (
 				<div className="loader" />
