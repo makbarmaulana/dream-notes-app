@@ -1,8 +1,9 @@
 import React from "react";
 import { useInput } from "../hooks/useInput";
-import { login } from "../utils/network-data";
+import { login } from "../utils/network_data";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../context/Context";
+import { Context } from "../context/context";
+import { loginGreet } from "../utils/lang_properties";
 import LoginInput from "../components/LoginInput";
 import ToggleLang from "../components/Action/ToggleLang";
 import ToggleTheme from "../components/Action/ToggleTheme";
@@ -13,23 +14,6 @@ const LoginPage = (props) => {
 
 	const [email, emailHandler] = useInput();
 	const [password, passwordHandler] = useInput("");
-
-	const greeting = {
-		en: {
-			header: "Welcome Back!",
-			subheader:
-				"to keep connected with us, please login with your personal info.",
-			ask: "Don't have an account?",
-			button: "Register",
-		},
-		id: {
-			header: "Selamat Datang!",
-			subheader:
-				"untuk tetap terhubung dengan kami, silahkan masuk dengan data darimu.",
-			ask: "Tidak memiliki akun?",
-			button: "Daftar",
-		},
-	};
 
 	const loginHandler = async (e) => {
 		e.preventDefault();
@@ -44,11 +28,11 @@ const LoginPage = (props) => {
 	return (
 		<div className="LoginPage">
 			<div className="login col-left">
-				<h1 className="title">{greeting[locale].header}</h1>
-				<p className="subtitle">{greeting[locale].subheader}</p>
-				<p className="ask">{greeting[locale].ask}</p>
+				<h1 className="title">{loginGreet[locale].header}</h1>
+				<p className="subtitle">{loginGreet[locale].subheader}</p>
+				<p className="ask">{loginGreet[locale].ask}</p>
 				<Link to="/register" className="welcome-btn">
-					{greeting[locale].button}
+					{loginGreet[locale].button}
 				</Link>
 			</div>
 
@@ -63,6 +47,7 @@ const LoginPage = (props) => {
 					onEmailChange={emailHandler}
 					password={password}
 					onPasswordChange={passwordHandler}
+					locale={locale}
 				/>
 			</div>
 		</div>

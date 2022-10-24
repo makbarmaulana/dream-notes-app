@@ -1,18 +1,17 @@
 import React from "react";
 import Button from "./Action/Button";
-import { Context } from "../context/Context";
 
 const AddNote = (props) => {
-	const { locale } = React.useContext(Context);
+	const { addPage, locale } = props;
 
 	return (
 		<div className="AddInputNote">
-			<h1 className="title">{locale === "en" ? "Add Note" : "Tambah Catatan"}</h1>
+			<h1 className="title">{addPage[locale].header}</h1>
 			<form className="form">
 				<input
 					className="input add-title"
 					type="text"
-					placeholder={locale === "en" ? "Input Title..." : "Masukan Judul..."}
+					placeholder={addPage[locale].inputTitle}
 					value={props.title}
 					onChange={props.onTitleChange}
 					required
@@ -20,7 +19,7 @@ const AddNote = (props) => {
 				<textarea
 					className="input add-body"
 					type="text"
-					placeholder={locale === "en" ? "Input Description..." : "Masukan Deskripsi..."}
+					placeholder={addPage[locale].inputBody}
 					value={props.body}
 					onChange={props.onBodyChange}
 					data-role="none"
@@ -29,7 +28,7 @@ const AddNote = (props) => {
 				<Button
 					onClick={props.onAddNote}
 					className="btn-addnote"
-					label={locale === "en" ? "ADD" : "TAMBAH"}
+					label={addPage[locale].button}
 				/>
 			</form>
 		</div>

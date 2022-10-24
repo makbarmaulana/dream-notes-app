@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { ROUTE_PROPS } from "./utils/route-properties";
-import { getUserLogged, putAccessToken } from "./utils/network-data";
-import { Context } from "./context/Context";
+import { ROUTE_PROPS } from "./utils/route_properties";
+import { getUserLogged, putAccessToken } from "./utils/network_data";
+import { Context } from "./context/context";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";

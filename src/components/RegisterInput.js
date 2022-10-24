@@ -1,25 +1,14 @@
 import React from "react";
 import { IoPersonOutline, IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
-import { Context } from "../context/Context";
+import { registerPage } from "../utils/lang_properties";
 import Button from "./Action/Button";
 
 const RegisterInput = (props) => {
-	const { locale } = React.useContext(Context);
-
-	const register = {
-		en: {
-			header: "Create an account",
-			button: "Signup",
-		},
-		id: {
-			header: "Buat akun baru",
-			button: "Daftar",
-		}
-	}
+	const { locale } = props;
 
 	return (
 		<div className="RegisterInput">
-			<h1 className="title">{register[locale].header}</h1>
+			<h1 className="title">{registerPage[locale].header}</h1>
 			<form className="form">
 				<div className="input-box">
 					<IoPersonOutline className="username-icon" />
@@ -64,7 +53,7 @@ const RegisterInput = (props) => {
 				<Button
 					onClick={props.onRegister}
 					className="btn-register"
-					label={register[locale].button}
+					label={registerPage[locale].button}
 				/>
 			</form>
 		</div>

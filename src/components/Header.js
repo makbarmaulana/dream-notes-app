@@ -1,8 +1,8 @@
 import React from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { BsSearch } from "react-icons/bs";
-import { putAccessToken } from "../utils/network-data";
-import { Context } from "../context/Context";
+import { putAccessToken } from "../utils/network_data";
+import { Context } from "../context/context";
 import { useNavigate } from "react-router-dom";
 import Button from "./Action/Button";
 import ToggleTheme from "./Action/ToggleTheme";

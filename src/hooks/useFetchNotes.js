@@ -1,37 +1,35 @@
 import React from "react";
-import {
-	archiveNote,
-	deleteNote,
-	getActiveNotes,
-	getArchivedNotes,
-	getNote,
-	unarchiveNote,
-} from "../utils/network-data";
+import { archiveNote, deleteNote, getActiveNotes, getArchivedNotes, getNote, unarchiveNote } from "../utils/network_data";
 
-export const useFetchAPI = (pathname, id) => {
+export const useFetchNotes = (pathname, id) => {
 	const [notes, setNotes] = React.useState([]);
 	const [loading, setLoading] = React.useState(true);
 
 	const fetchNotes = React.useCallback(() => {
-		if (pathname === "/home") {
-			getActiveNotes().then(({ data }) => {
-				setNotes(data);
-				setLoading(false);
-			});
-		}
-
-		if (pathname === "/archive") {
-			getArchivedNotes().then(({ data }) => {
-				setNotes(data);
-				setLoading(false);
-			});
-		}
-
-		if (pathname === `/detail/${id}`) {
-			getNote(id).then(({ data }) => {
-				setNotes(data);
-				setLoading(false);
-			});
+		switch (pathname) {
+			case "/home":
+				setLoading(true);
+				getActiveNotes().then(({ data }) => {
+					setNotes(data);
+					setLoading(false);
+				});
+				break;
+			case "/archive":
+				setLoading(true);
+				getArchivedNotes().then(({ data }) => {
+					setNotes(data);
+					setLoading(false);
+				});
+				break;
+			case `/detail/${id}`:
+				setLoading(true);
+				getNote(id).then(({ data }) => {
+					setNotes(data);
+					setLoading(false);
+				});
+				break;
+			default:
+				break;
 		}
 	}, [id, pathname]);
 
@@ -43,8 +41,10 @@ export const useFetchAPI = (pathname, id) => {
 		if (window.confirm("delete?")) {
 			deleteNote(id).then(() => {
 				fetchNotes();
-				alert("delete success");
+				alert("note deleted!");
 			});
+		} else {
+			window.confirm.abort();
 		}
 	};
 
@@ -54,6 +54,8 @@ export const useFetchAPI = (pathname, id) => {
 				fetchNotes();
 				alert("note archived!");
 			});
+		} else {
+			window.confirm.abort();
 		}
 	};
 
@@ -63,6 +65,8 @@ export const useFetchAPI = (pathname, id) => {
 				fetchNotes();
 				alert("note un-archived!");
 			});
+		} else {
+			window.confirm.abort();
 		}
 	};
 

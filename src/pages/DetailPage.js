@@ -1,31 +1,39 @@
 import React from "react";
-import { ShowFormattedDate } from "../utils/date-formatter";
-import { useParams, useLocation } from "react-router-dom";
-import {
-	RiInboxArchiveFill,
-	RiInboxUnarchiveFill,
-	RiDeleteBin2Fill,
-} from "react-icons/ri";
-import Button from "../components/Action/Button";
-import { Context } from "../context/Context";
-import { useFetchAPI } from "../hooks/useFetchAPI";
+import { Context } from "../context/context";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useFetchNotes } from "../hooks/useFetchNotes";
+import { ShowFormattedDate } from "../utils/date_formatter";
+import { RiInboxArchiveFill, RiInboxUnarchiveFill, RiDeleteBin2Fill, RiArrowLeftCircleLine } from "react-icons/ri";
+import { detailPage } from "../utils/lang_properties";
+import Button from "../components/Action/Button";
+import Header from "../components/Header"
 
 const DetailPage = () => {
 	const { locale } = React.useContext(Context);
 	const navigate = useNavigate();
 	const { id } = useParams();
 	const { pathname } = useLocation();
-	const { notes, loading, deleteHandler, archiveHandler, unArchiveHandler } =
-		useFetchAPI(pathname, id);
+	const { notes, loading, deleteHandler, archiveHandler, unArchiveHandler }
+		= useFetchNotes(pathname, id);
 
 	return (
 		<div className="DetailPage">
+			<Header />
 			{loading ? (
-				<div className="loader " />
+				<div className="NoteDetail">
+					<div className="loader " />
+				</div>
+			) : notes?.id !== id ? (
+				<div className="NoteDetail">
+					<p className="notes-empty">{detailPage[locale].notFound}</p>
+				</div>
 			) : (
 				<div className="NoteDetail">
 					<div className="note-detail-content">
+						<Link to={notes?.archived ? "/archive" : "/home"}>
+							<RiArrowLeftCircleLine className="back-icons"/>
+						</Link>
 						<p className="createdAt">
 							{ShowFormattedDate(notes?.createdAt, locale)}
 						</p>

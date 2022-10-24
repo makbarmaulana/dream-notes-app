@@ -4,6 +4,7 @@ export const ShowFormattedDate = (date, locale) => {
 		month: "short",
 		day: "numeric",
 	};
+	
 	return new Date(date).toLocaleDateString(
 		locale === "en" ? "en-EN" : "id-ID",
 		options

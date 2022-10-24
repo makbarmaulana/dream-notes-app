@@ -1,5 +1,5 @@
 import React from "react";
-import { Context } from "../../context/Context";
+import { Context } from "../../context/context";
 import Button from "./Button";
 
 const ToggleLang = () => {

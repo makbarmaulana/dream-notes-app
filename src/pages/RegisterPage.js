@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import { register } from "../utils/network-data";
-import { Context } from "../context/Context";
+import { register } from "../utils/network_data";
+import { Context } from "../context/context";
+import { registerGreet } from "../utils/lang_properties";
 import RegisterInput from "../components/RegisterInput";
 import ToggleLang from "../components/Action/ToggleLang";
 import ToggleTheme from "../components/Action/ToggleTheme";
@@ -15,22 +16,6 @@ const RegisterPage = () => {
 	const [email, emailHandler] = useInput("");
 	const [password, passwordHandler] = useInput("");
 	const [confirmPassword, confirmPasswordHandler] = useInput("");
-
-	const greeting = {
-		en: {
-			header: "Hello, Friend!",
-			subheader: "Enter your personal details and start journey with us.",
-			ask: "Have an account?",
-			button: "Login",
-		},
-
-		id: {
-			header: "Halo, Teman!",
-			subheader: "Masukkan data diri anda dan mulai menjelajah bersama kami.",
-			ask: "Tidak memiliki akun?",
-			button: "Masuk",
-		},
-	};
 
 	const registerHandler = async (e) => {
 		e.preventDefault();
@@ -48,11 +33,11 @@ const RegisterPage = () => {
 	return (
 		<div className="RegisterPage">
 			<div className="register col-left">
-				<h1 className="title">{greeting[locale].header}</h1>
-				<p className="subtitle">{greeting[locale].subheader}</p>
-				<p className="ask">{greeting[locale].ask}</p>
+				<h1 className="title">{registerGreet[locale].header}</h1>
+				<p className="subtitle">{registerGreet[locale].subheader}</p>
+				<p className="ask">{registerGreet[locale].ask}</p>
 				<Link to="/" className="welcome-btn">
-					{greeting[locale].button}
+					{registerGreet[locale].button}
 				</Link>
 			</div>
 
@@ -71,6 +56,7 @@ const RegisterPage = () => {
 					onPasswordChange={passwordHandler}
 					confirmPassword={confirmPassword}
 					onConfirmPasswordChange={confirmPasswordHandler}
+					locale={locale}
 				/>
 			</div>
 		</div>

@@ -49,7 +49,6 @@ html {
 body {
   background-color: var(--w-db1);
   transition: background .2s ease;
-  overflow-y: scroll;
 }
 
 a {
@@ -120,7 +119,7 @@ h3 {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 2s linear infinite;
+  animation: spin .7s linear infinite;
 }
 
 .input {
@@ -145,6 +144,7 @@ h3 {
   right: 14px;
   display: flex;
   gap: 14px;
+  z-index: 10;
 }
 
 .RegisterPage .toggle {
@@ -240,61 +240,33 @@ h3 {
 
 .App .nonauth {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .LoginPage,
 .RegisterPage {
   position: relative;
-  width: 1000px;
+  width: 65%;
+  min-width: 700px;
   height: 400px;
-  display: grid;
-  place-items: center;
+  display: flex;
   box-shadow: 0px 3px 15px 3px rgba(0, 0, 0, 0.2);
 }
 
-.LoginPage {
-  grid-template-columns: .7fr 1fr;
-}
-
 .RegisterPage {
-  grid-template-columns: 1fr .7fr;
-}
-
-.login.col-left {
-  grid-column: 1 / 2;
-  background-color: var(--dark-blue-3);
-  color: var(--white);
-}
-
-.login.col-right {
-  grid-column: 2 / 3;
-  background-color: var(--w-db2);
-  color: var(--fc-theme);
-}
-
-.register.col-left {
-  grid-column: 2 / 3;
-  background-color: var(--dark-blue-3);
-  color: var(--white);
-}
-
-.register.col-right {
-  grid-row-start: 1;
-  grid-column: 1 / 2;
-  background-color: var(--w-db2);
-  color: var(--fc-theme);
+  flex-direction: row-reverse;
 }
 
 .col-left,
 .col-right {
   position: relative;
-  width: 100%;
   height: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   place-content: center;
   place-items: center;
   text-align: center;
@@ -302,14 +274,37 @@ h3 {
   padding: 24px;
 }
 
+.col-left {
+  background-color: var(--dark-blue-3);
+  color: var(--white);
+  width: 40%;
+  min-width: 300px;
+}
+
+.col-right {
+  background-color: var(--w-db2);
+  color: var(--fc-theme);
+  width: 60%;
+  min-width: 400px;
+}
+
 .ask {
   font-weight: 400;
   margin-top: 42px;
 }
 
-:is(.LoginInput, .RegisterInput) .title {
+.RegisterInput .title {
   margin-bottom: 28px;
   color: var(--blue);
+}
+
+.LoginInput .title {
+  margin-bottom: 52px;
+  color: var(--blue);
+}
+
+[data-theme='dark'] :where(.LoginInput, .RegisterInput) .title {
+  color: var(--white);
 }
 
 .form {
@@ -379,10 +374,10 @@ h3 {
   border: 1px solid transparent;
 }
 
+
 /* --- APP PAGE --- */
 
 .App .authed {
-  min-width: 500px;
   max-width: 100vw;
   min-height: 100vh;
   display: grid;
@@ -673,7 +668,7 @@ h3 {
   padding: 0 25px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 10px;
+  gap: 14px;
   margin-bottom: 70px;
 }
 
@@ -729,17 +724,29 @@ h3 {
 
 /* --- DETAIL PAGE --- */
 
+.DetailPage {
+  padding: 30px;
+}
+
 .NoteDetail {
   position: relative;
   color: var(--fc-theme);
-  width: 70%;
-  min-width: 500px;
+  width: calc(100% var(--sidebar-width));
   min-height: 500px;
-  margin: 50px auto;
+  margin: var(--header-height) auto;
   padding: 32px;
   color: var(--fc-theme);
   background-color: var(--w-db3);
   box-shadow: var(--box-shadow-1);
+}
+
+.back-icons {
+  font-size: 28px;
+  transition: var(--transition-1);
+}
+
+.back-icons:hover {
+  color: var(--blue);
 }
 
 .note-detail-content .createdAt {
@@ -908,4 +915,104 @@ h3 {
 
 .PageNotFound .BackToHome:hover {
   background: var(--dark-blue-1);
+}
+
+@media (max-width: 576px) {
+  .App .authed {
+    max-width: 576px;
+    grid-template-columns: 1fr;
+  }
+
+  .HomePage,
+  .ArchivePage,
+  .DetailPage,
+  .AddPage {
+    grid-column-start: unset;
+  }
+
+  .Header {
+    padding: 8px 14px;
+    width: 100%;
+    height: 100px;
+    gap: 10px;
+    left: unset;
+    flex-direction: column-reverse;
+  }
+
+  .Header.hide {
+    top: -120px;
+  }
+
+  .searchbar {
+    min-width: 130px;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .Sidebar.hide {
+    height: max-content;
+  }
+
+  .Sidebar.hide .nav-menu {
+    display: none;
+  }
+
+  .status-notes {
+    margin: 130px 0 30px;
+  }
+
+  .DetailPage {
+    padding: 14px;
+  }
+
+  .DetailPage .Header {
+    height: var(--header-height);
+  }
+
+  .DetailPage .searchbar {
+    display: none;
+  }
+
+  .DetailPage .NoteDetail {
+    padding: 18px;
+  }
+
+  .note-detail-content {
+    margin-bottom: 50px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .App .nonauth {
+    max-width: 768px;
+    width: 100%;
+    min-height: 100vh;
+    align-items: unset;
+    justify-content: unset;
+  }
+
+  .LoginPage,
+  .RegisterPage {
+    width: 100%;
+    min-width: 320px;
+    flex-direction: column;
+    place-content: center;
+    min-height: 100vh;
+  }
+
+  .col-left,
+  .col-right {
+    min-width: 320px;
+    width: 100%;
+  }
+
+  .col-left {
+    height: 40%;
+  }
+
+  .col-right {
+    height: 60%;
+  }
 }
