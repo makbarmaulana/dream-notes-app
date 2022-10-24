@@ -74,5 +74,5 @@ export const useFetchNotes = (pathname, id) => {
 
 useFetchNotes.propTypes = {
 	pathname: PropTypes.string.isRequired,
-	id: PropTypes.string.isRequired,
+	id: PropTypes.string,
 };
