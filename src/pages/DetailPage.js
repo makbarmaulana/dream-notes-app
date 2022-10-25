@@ -24,6 +24,9 @@ const DetailPage = () => {
 				</div>
 			) : notes?.id !== id ? (
 				<div className="NoteDetail">
+					<Link to={notes?.archived ? "/archive" : "/home"}>
+						<RiArrowLeftCircleLine className="back-icons" />
+					</Link>
 					<p className="notes-empty">{detailPage[locale].notFound}</p>
 				</div>
 			) : (

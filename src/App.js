@@ -7,6 +7,7 @@ import { useLocalStorage } from "./hooks/useLocalStorage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Sidebar from "./components/Sidebar";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
 	const [authedUser, setAuthedUser] = React.useState(null);
@@ -66,10 +67,11 @@ const App = () => {
 		<Context.Provider value={contextValue}>
 			<div className="App">
 				{authedUser === null ? (
-					<div className="nonauth">
+					<div className="nonauthed">
 						<Routes>
 							<Route path="*" element={<LoginPage authed={setDataUser} />} />
 							<Route path="/register" element={<RegisterPage />} />
+							<Route path="/detail/*" element={<PageNotFound />} />
 						</Routes>
 					</div>
 				) : (

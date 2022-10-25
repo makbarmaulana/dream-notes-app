@@ -5,7 +5,7 @@ import { pageNotFound } from "../utils/lang_properties";
 import { Context } from "../context/context";
 
 const PageNotFound = () => {
-	const { locale } = React.useContext(Context);
+	const { authedUser, locale } = React.useContext(Context);
 
 	return (
 		<section className="PageNotFound">
@@ -18,7 +18,7 @@ const PageNotFound = () => {
 					<h1>404</h1>
 					<h3>{pageNotFound[locale].header}</h3>
 					<p>{pageNotFound[locale].description}</p>
-					<Link className="BackToHome" to="/home">
+					<Link className="BackToHome" to={authedUser === null ? "/" : "/home"}>
 						{pageNotFound[locale].button}
 					</Link>
 				</div>
