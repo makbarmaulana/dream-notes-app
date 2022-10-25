@@ -23,8 +23,6 @@ const AddNote = (props) => {
 					placeholder={addPage[locale].inputBody}
 					value={props.body}
 					onChange={props.onBodyChange}
-					data-role="none"
-					required
 				/>
 				<Button
 					onClick={props.onAddNote}
