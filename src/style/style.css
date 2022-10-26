@@ -931,6 +931,12 @@ h3 {
   background: var(--dark-blue-1);
 }
 
+
+
+
+
+/* --- Responsive Media Query --- */
+
 @media (max-width: 576px) {
   .App .authed {
     max-width: 576px;
