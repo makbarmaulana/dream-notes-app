@@ -745,7 +745,7 @@ h3 {
 .NoteDetail {
   position: relative;
   color: var(--fc-theme);
-  width: calc(100% var(--sidebar-width));
+  width: calc(100% - var(--sidebar-width));
   min-height: 500px;
   margin: var(--header-height) auto;
   padding: 32px;
