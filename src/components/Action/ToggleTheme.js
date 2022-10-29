@@ -1,5 +1,5 @@
 import React from "react";
-import { Context } from "../../context/context";
+import { Context } from "../../context/Context";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const ToggleTheme = () => {

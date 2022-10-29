@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { BsJustify, BsArrowRight } from "react-icons/bs";
 import { navigation } from "../utils/navigation_properties";
 import avatar from "../assets/avatar.png";

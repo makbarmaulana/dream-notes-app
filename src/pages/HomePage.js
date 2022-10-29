@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import NoteList from "../components/NoteList";
 import { homePage } from "../utils/lang_properties";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { useLocation } from "react-router-dom";
 import { useFetchNotes } from "../hooks/useFetchNotes";
 

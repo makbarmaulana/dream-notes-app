@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import { register } from "../utils/network_data";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { registerGreet } from "../utils/lang_properties";
 import RegisterInput from "../components/RegisterInput";
 import ToggleLang from "../components/Action/ToggleLang";

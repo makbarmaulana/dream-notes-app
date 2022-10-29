@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ShowFormattedDate } from "../utils/date_formatter";
 import { RiInboxArchiveFill, RiInboxUnarchiveFill, RiDeleteBin2Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import Button from "./Action/Button";
 
 const NoteItem = (props) => {

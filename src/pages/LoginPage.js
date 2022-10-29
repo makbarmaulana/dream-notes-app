@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useInput } from "../hooks/useInput";
 import { login } from "../utils/network_data";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { loginGreet } from "../utils/lang_properties";
 import LoginInput from "../components/LoginInput";
 import ToggleLang from "../components/Action/ToggleLang";

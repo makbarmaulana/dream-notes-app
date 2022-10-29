@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Thumb404 } from "../assets/404-icon.svg";
 import { pageNotFound } from "../utils/lang_properties";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 
 const PageNotFound = () => {
 	const { authedUser, locale } = React.useContext(Context);

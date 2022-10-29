@@ -1,5 +1,5 @@
 import React from "react";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { useParams, useLocation, Link } from "react-router-dom";
 import { useFetchNotes } from "../hooks/useFetchNotes";
 import { ShowFormattedDate } from "../utils/date_formatter";

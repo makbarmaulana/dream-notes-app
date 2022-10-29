@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
 import { addNote } from "../utils/network_data";
-import { Context } from "../context/context";
+import { Context } from "../context/Context";
 import { addPage } from "../utils/lang_properties";
 import AddNote from "../components/AddNote";
 
