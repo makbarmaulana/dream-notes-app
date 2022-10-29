@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://dream-notes-app.vercel.app/">Dream Notes App</a></h1>
+<h1 align="center"><a href="https://dream-notes-app.vercel.app/" target="_blank">Dream Notes App</a></h1>
 <h3 align="center"> :star: STAR this project, if you like it :star: </a></h3>
 <br />
 
