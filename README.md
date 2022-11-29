@@ -1,5 +1,4 @@
 <h1 align="center"><a href="https://dream-notes-app.vercel.app/" target="_blank">Dream Notes App</a></h1>
-<h3 align="center"> :star: STAR this project, if you like it :star: </a></h3>
 <br />
 
 ![Dream Notes App - Login](https://user-images.githubusercontent.com/92363152/198823593-2ee02470-cb91-4401-8fd2-3a41d980348a.png)
